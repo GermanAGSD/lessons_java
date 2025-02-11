@@ -18,3 +18,10 @@
 - Уровень 4 Уровень языка ассемблера
 - Уровень 5 Язык высокого уровня
 
+1.2 GIT
+- git config --global user.name "German Baklagin"
+- git config --global user.email "devprog777@gmail.com"
+- git config --list
+- git add .
+- git commit -m "test commit"
+- git push
