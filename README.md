@@ -28,3 +28,4 @@
 - git push
 - git branch -a 
 - git checkout -b develop master создать новую ветку и копировать в нее содержимое
+- git checkout master изменить ветку
