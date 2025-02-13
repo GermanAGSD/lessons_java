@@ -27,11 +27,11 @@ public class lessons_1 {
         printDoubleSummMan(array);
     }
 
-    public static void printMax(int[] arr){
-        if(arr.length == 0){
+    public static void printMax(int[] arr) {
+        if (arr.length == 0) {
             System.out.println("Массив пустой");
         }
-        int max = arr[0];
+        int max = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] > max) {
                 max = arr[i];
@@ -41,18 +41,18 @@ public class lessons_1 {
     }
 
     // Найти два максимальных числа
-    public static void printDoubleSummMan(int[] arr){
+    public static void printDoubleSummMan(int[] arr) {
         if (arr == null || arr.length < 2) {
             throw new IllegalArgumentException("Массив должен содержать минимум два элемента");
         }
-        int one = arr[0];
-        int two = arr[0];
+        int one = Integer.MIN_VALUE;
+        int two = Integer.MIN_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] > one) {
                 two = one;
                 one = arr[i];
-            }else if (arr[i] > two) {
+            } else if (arr[i] > two) {
                 two = arr[i];
             }
         }

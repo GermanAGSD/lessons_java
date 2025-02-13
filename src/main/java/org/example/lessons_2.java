@@ -26,7 +26,14 @@ public class lessons_2 {
         System.out.println(a1+=a2); // 15
     }
 
-    public static void main9(String[] args) {
+    public static void main9() {
+        var x = 5.0;
+        System.out.println("Тип переменной: " + ((Object) x).getClass().getSimpleName());
 
+    }
+
+    public static void main10() {
+        Animal animal = new Animal(9, "Кошка",  "красная");
+        animal.toStr();
     }
 }

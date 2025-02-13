@@ -7,7 +7,9 @@ import static org.example.lessons_exception.*;
 
 public class Main {
     public static void main(String[] args) {
-        main8();
+//        main8();
+//        main9();
+        main10();
 
 
     }
