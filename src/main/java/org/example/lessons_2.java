@@ -35,5 +35,12 @@ public class lessons_2 {
     public static void main10() {
         Animal animal = new Animal(9, "Кошка",  "красная");
         animal.toStr();
+
+        Person per = new Person("German", 29);
+        per.info();
+
+        Employe empl = new Employe();
+        empl.setCompany("TheBull");
+        empl.info();
     }
 }
