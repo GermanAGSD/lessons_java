@@ -35,3 +35,16 @@
 
 1.4 Стэк это стрктура данных работающая по принципу LIFO Last in First out, 
 первым зашел последним вышел.
+
+1.5 - Коллекции
+- списки List<String> spisok = new ArrayList<>(); Списки упорядочены могут содежать дубликаты
+- spisok.add("Kondopoga")
+
+- Множества Set<Integer> numbers = new HashSet<>();
+- numbers.add("1")
+
+- Словарь ключ-значение Map<String, Integer> maps = new HashMap<>();
+- map.put("German", 29)
+
+- Очереди Queue<String> queue = new LinkedList<>();
+- queue.add("Task_1")

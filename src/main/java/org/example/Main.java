@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static org.example.lessons_books.*;
 import static org.example.lessons_skillfactory_1.*;
 
 /*
@@ -68,6 +69,7 @@ public class Main {
 //        objectProgramming.test();
         skillFactroy();
         Stack();
+        book_1();
 
 
     }
