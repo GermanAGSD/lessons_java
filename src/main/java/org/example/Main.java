@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static org.example.lessons_skillfactory_1.*;
+
 /*
 *  Общедоступный класс название Main
 * Типы данных
@@ -40,7 +42,9 @@ public class Main {
         int var_i;
         var_i = (int) var_f; // приведение типов
         System.out.println(var_i); // 8
-
+        String str = "5";
+        int parse = Integer.parseInt(str);
+        System.out.println(parse);
 //        main2();
 //        main3();
 //        main4();
@@ -62,6 +66,66 @@ public class Main {
 //        main20();
 //        main21();
 //        objectProgramming.test();
+        skillFactroy();
+
+
+    }
+
+//    public static void quaery() {
+//
+//
+//        Connection connection = DatabasePostgresql.connectToDatabase();
+//
+//        // Выполнение SQL-запроса
+//        if (connection != null) {
+//            String query = "SELECT * FROM hosts";
+////            DatabasePostgresql.executeQueryJson(connection, query);
+//            JSONArray result = DatabasePostgresql.executeQueryJson(connection, query);
+//            System.out.println(result.toString(1));
+//            // Закрытие соединения
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
+//            }
+//        }
+//    }
+
+    public static void updateData(Integer data){
+        int sum = (int)data;
+        System.out.println("Данные отправлены на сервер: " + data);
+
+    }
+/*
+*    Консольный ввод вывод данных
+      System.out.print() - без перехода на новую строку
+      System.out.println("Yes"); - с переходом на новую строку
+      System.out.printf()  - форматированный вывод данных
+* */
+    public static void main2(){
+        short x = 5;
+        double y = 4.5;
+        float z = 1.2f;
+        System.out.println(x);
+        System.out.println("x: " + x);
+        System.out.println("Yes");
+
+        System.out.printf("x: %d, y: %f: z: %.2f\n",x,y,z);
+// Ввод данных
+
+        Scanner inputValue = new Scanner(System.in);
+        System.out.print("Input num");
+        byte num = inputValue.nextByte(); // объект сканнер позволяет вводить с клавиуатуры
+
+        System.out.print(num);
+        System.out.print("Input name");
+        String name = inputValue.nextLine();
+
+        System.out.print("Input age");
+        int age = inputValue.nextInt();
+        System.out.print("Name: " + name + ", Age: " + age);
+
+        inputValue.close();
 
 
         Point pt = new Point();
@@ -142,67 +206,6 @@ public class Main {
         System.out.println(phone.length());
         User user = new User("german", "backlagin", "+79004551650", "cszc6791");
         user.showUser();
-
-
-//        quaery();
-
-    }
-
-//    public static void quaery() {
-//
-//
-//        Connection connection = DatabasePostgresql.connectToDatabase();
-//
-//        // Выполнение SQL-запроса
-//        if (connection != null) {
-//            String query = "SELECT * FROM hosts";
-////            DatabasePostgresql.executeQueryJson(connection, query);
-//            JSONArray result = DatabasePostgresql.executeQueryJson(connection, query);
-//            System.out.println(result.toString(1));
-//            // Закрытие соединения
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
-//            }
-//        }
-//    }
-
-    public static void updateData(Integer data){
-        int sum = (int)data;
-        System.out.println("Данные отправлены на сервер: " + data);
-
-    }
-/*
-*    Консольный ввод вывод данных
-      System.out.print() - без перехода на новую строку
-      System.out.println("Yes"); - с переходом на новую строку
-      System.out.printf()  - форматированный вывод данных
-* */
-    public static void main2(){
-        short x = 5;
-        double y = 4.5;
-        float z = 1.2f;
-        System.out.println(x);
-        System.out.println("x: " + x);
-        System.out.println("Yes");
-
-        System.out.printf("x: %d, y: %f: z: %.2f\n",x,y,z);
-// Ввод данных
-
-        Scanner inputValue = new Scanner(System.in);
-        System.out.print("Input num");
-        byte num = inputValue.nextByte(); // объект сканнер позволяет вводить с клавиуатуры
-
-        System.out.print(num);
-        System.out.print("Input name");
-        String name = inputValue.nextLine();
-
-        System.out.print("Input age");
-        int age = inputValue.nextInt();
-        System.out.print("Name: " + name + ", Age: " + age);
-
-        inputValue.close();
 
 
     }
