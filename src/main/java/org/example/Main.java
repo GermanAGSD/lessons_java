@@ -67,6 +67,7 @@ public class Main {
 //        main21();
 //        objectProgramming.test();
         skillFactroy();
+        Stack();
 
 
     }

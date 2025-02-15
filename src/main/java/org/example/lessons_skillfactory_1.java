@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Stack;
+
 public class lessons_skillfactory_1 {
 
     public static void skillFactroy() {
@@ -32,5 +34,16 @@ public class lessons_skillfactory_1 {
             }
         }
         System.out.println(one + " : " + two);
+    }
+
+    public static void Stack() {
+        CustomStack stack = new CustomStack(5);
+        stack.push("Java");
+        stack.push("Spring");
+        stack.push("Microservice");
+
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
     }
 }

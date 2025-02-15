@@ -1,4 +1,6 @@
 package org.example;
+import com.google.gson.Gson;
+
 import java.security.SecureRandom;
 import java.util.Base64;
 
@@ -22,6 +24,7 @@ public class User {
         this.name = upperTo(name);
         this.surname = upperTo(surname);
         this.phoneNumber = checkNumber(phoneNumber);
+        this.password = password;
     }
 
     public String  upperTo(String name){
@@ -52,11 +55,12 @@ public class User {
                 " PhoneNumber: " + this.phoneNumber + " Password hash: " + password);
     }
 
-
-    public static User objectUser(User usr){
-
-        return usr;
+    public void toJson(User user){
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        System.out.println(json);
     }
+
 
 
 }
