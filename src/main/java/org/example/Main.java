@@ -67,9 +67,10 @@ public class Main {
 //        main20();
 //        main21();
 //        objectProgramming.test();
-        skillFactroy();
-        Stack();
-        book_1();
+//        skillFactroy();
+//        Stack();
+//        book_1();
+        book_2();
 
 
     }

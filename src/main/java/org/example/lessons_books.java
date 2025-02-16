@@ -33,7 +33,13 @@ public class lessons_books {
         test_2_2.meth(test_2_2);
         System.out.println("test_2_2 a b" + test_2_2.a + " " + test_2_2.b);
     }
+
+    public static void book_2() {
+        Factorial f = new Factorial();
+        System.out.println("Factorial: " + f.fact(3));
+    }
 }
+
 class Test {
     int a, b;
 
@@ -61,5 +67,15 @@ class Test_2{
     void meth(Test_2 test){
         test.a *= 2;
         test.b /= 2;
+    }
+}
+
+class Factorial{
+    int fact(int n){
+        if(n == 1){
+            return 1;
+        }
+        int res = fact(n-1) *n;
+        return res;
     }
 }
