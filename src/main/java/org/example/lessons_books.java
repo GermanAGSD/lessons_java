@@ -1,6 +1,8 @@
 package org.example;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class lessons_books {
@@ -37,6 +39,19 @@ public class lessons_books {
     public static void book_2() {
         Factorial f = new Factorial();
         System.out.println("Factorial: " + f.fact(3));
+
+        String strob = "F";
+        String strob2 = "F";
+        System.out.println(strob.equals(strob2));
+        System.out.println(strob.charAt(0));
+
+        try {
+            FileInputStream fin = new FileInputStream("test.txt");
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
 
