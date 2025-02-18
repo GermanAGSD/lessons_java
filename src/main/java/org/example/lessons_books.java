@@ -45,12 +45,9 @@ public class lessons_books {
         System.out.println(strob.equals(strob2));
         System.out.println(strob.charAt(0));
 
-        try {
-            FileInputStream fin = new FileInputStream("test.txt");
+        var t = new Test(100,22);
+        System.out.println(t.equlTo(t));
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 }

@@ -5,7 +5,7 @@ import java.util.Stack;
 public class lessons_skillfactory_1 {
 
     public static void skillFactroy() {
-        int[] les = new int[] {1,2,3,4,75};
+        int[] les = new int[]{1, 2, 3, 4, 75};
         MaxValue(les);
         MaxTwo(les);
     }
@@ -29,12 +29,14 @@ public class lessons_skillfactory_1 {
             if (arr[i] > one) {
                 two = one;
                 one = arr[i];
-            }else if (arr[i] > two) {
+            } else if (arr[i] > two) {
                 two = arr[i];
             }
         }
         System.out.println(one + " : " + two);
+
     }
+
 
     public static void Stack() {
         CustomStack stack = new CustomStack(5);

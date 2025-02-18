@@ -181,6 +181,7 @@ public class Main {
         car_2.draw();
 
         final int N = 4;
+
         AbstractClass cars[] = new AbstractClass[N];
         cars[0] = new ToyotaCorolla();
         cars[1] = new ToyotaCamry();
