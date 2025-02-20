@@ -1,9 +1,10 @@
 package org.example;
 
 public class NewThread implements Runnable {
+    String name;
     Thread t;
-    NewThread() {
-        t = new Thread(this, "New Thread");
+    NewThread(String name) {
+        t = new Thread(this, name);
         System.out.println("Дочерний поток");
     }
 

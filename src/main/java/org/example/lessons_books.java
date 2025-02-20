@@ -96,8 +96,12 @@ public class lessons_books {
     }
 
     public static void book_5() {
-        NewThread nt = new NewThread();
+        NewThread nt = new NewThread("One");
+        NewThread nt2 = new NewThread("Two");
         nt.t.start();
+        System.out.println(nt);
+        System.out.println(nt2);
+        nt2.t.start();
         try{
             for (int i = 5; i > 0; i--) {
                 System.out.println("Главный поток: " + i);
@@ -106,6 +110,51 @@ public class lessons_books {
         }catch (InterruptedException e){
             System.out.println("Glab potok prervan");
         }
+        System.out.println("Завершение главного потока");
+    }
+
+    public static void book_6() {
+        NewThread2 nt2 = new NewThread2();
+        nt2.start();
+        try{
+            for (int i = 5; i > 0; i--) {
+                System.out.println("Главный поток: " + i);
+                Thread.sleep(1000);
+            }
+        }catch (InterruptedException e){
+            System.out.println("Glab potok prervan");
+        }
+        System.out.println("Завершение главного потока");
+    }
+
+    public static void book_7() {
+        NewThread nt1 = new NewThread("One");
+        NewThread nt2 = new NewThread("Two");
+        NewThread nt3 = new NewThread("Three");
+
+        nt1.t.start();
+        nt2.t.start();
+        nt3.t.start();
+        System.out.println("Приоритет" + nt1.t.getPriority());
+
+        System.out.println("Potok One rabotaet " + nt1.t.isAlive());
+        System.out.println("Potok Two rabotaet " + nt2.t.isAlive());
+        System.out.println("Potok Three rabotaet " + nt3.t.isAlive());
+
+//        Ожидание завершение потоков
+        try {
+            System.out.println("Ожидание завершение потоков");
+            nt1.t.join();
+            nt2.t.join();
+            nt3.t.join();
+        }catch (InterruptedException e){
+            System.out.println("Glab potok prervan");
+        }
+
+
+        System.out.println("Potok One rabotaet " + nt1.t.isAlive());
+        System.out.println("Potok Two rabotaet " + nt2.t.isAlive());
+        System.out.println("Potok Three rabotaet " + nt3.t.isAlive());
         System.out.println("Завершение главного потока");
     }
 }
