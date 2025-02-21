@@ -76,7 +76,17 @@ public class Main {
 //        module_3();
 //        module_3_1();
 //        module_3_2();
-        module_3_3();
+//        module_3_3();
+        module_4_3();
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -599,7 +609,6 @@ public class Main {
         char c = strBuffer.charAt(0); // Извлекаем первую букву
         strBuffer.setCharAt(0,'c'); // Вставляем на позицию сивмол
         System.out.println(strBuffer); // cava
-
     }
 
     //    Битовые операции и Или НЕ XOR
