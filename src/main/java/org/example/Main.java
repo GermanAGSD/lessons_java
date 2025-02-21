@@ -27,25 +27,25 @@ public class Main {
         boolean peremennay_8 = true;
         final double PI = 3.14159; // Константная перменная
 
-        System.out.println("Hello world!");
-        System.out.println(peremennay_6);
-        // Создаем ObjectMapper — основной класс для работы с JSON
-
-//        Операция присваивание
-        short a = 6;
-        a = 7;
-        int b = 1;
-        b = b + 1;
-        a = (short) b; // приведение типов
-        b = a;
-
-        float var_f = 8.7f;
-        int var_i;
-        var_i = (int) var_f; // приведение типов
-        System.out.println(var_i); // 8
-        String str = "5";
-        int parse = Integer.parseInt(str);
-        System.out.println(parse);
+//        System.out.println("Hello world!");
+//        System.out.println(peremennay_6);
+//        // Создаем ObjectMapper — основной класс для работы с JSON
+//
+////        Операция присваивание
+//        short a = 6;
+//        a = 7;
+//        int b = 1;
+//        b = b + 1;
+//        a = (short) b; // приведение типов
+//        b = a;
+//
+//        float var_f = 8.7f;
+//        int var_i;
+//        var_i = (int) var_f; // приведение типов
+//        System.out.println(var_i); // 8
+//        String str = "5";
+//        int parse = Integer.parseInt(str);
+//        System.out.println(parse);
 //        main2();
 //        main3();
 //        main4();
@@ -72,8 +72,11 @@ public class Main {
 //        book_1();
 //        book_2();
 //        book_5();
-        book_7();
-
+//        book_7();
+//        module_3();
+//        module_3_1();
+//        module_3_2();
+        module_3_3();
 
     }
 
