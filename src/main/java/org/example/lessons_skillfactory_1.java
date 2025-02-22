@@ -164,7 +164,8 @@ public class lessons_skillfactory_1 {
 
         System.out.println(Arrays.equals(mass, mass2));
     }
-    public static void module_4_2(){
+
+    public static void module_4_2() {
         String name = "German";
         String name2 = "German";
         System.out.println(name.length());
@@ -180,7 +181,7 @@ public class lessons_skillfactory_1 {
         System.out.println("Длина: " + strBuffer.length());
 
         char c = strBuffer.charAt(0); // Извлекаем первую букву
-        strBuffer.setCharAt(0,'c'); // Вставляем на позицию сивмол
+        strBuffer.setCharAt(0, 'c'); // Вставляем на позицию сивмол
         System.out.println(strBuffer); // cava
         System.out.println(str.trim());
     }
@@ -188,12 +189,12 @@ public class lessons_skillfactory_1 {
     public static void module_4_3() {
         Scanner sc = new Scanner(System.in);
         boolean isCorrectName = false;
-        while(!isCorrectName) {
+        while (!isCorrectName) {
             String name = sc.nextLine();
             isCorrectName = checkName(name);
             if (!isCorrectName) {
                 System.out.println("Должно быть 3 слова");
-            }else{
+            } else {
                 System.out.println(formatName(name));
             }
         }
@@ -219,4 +220,87 @@ public class lessons_skillfactory_1 {
         // Собираем обратно в строку
         return String.join(" ", words);
     }
+
+    public static void module_4_4() {
+        int[] arr1 = {5, 24, 3, 66, 38, 16, 27};
+        System.out.println(arr1[3]);
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите имя пользователя:");
+        String name = sc.nextLine();
+        System.out.println("Создайте пароль:");
+        String PW = sc.nextLine();
+        if (PW.length() < 8 || PW.length() > 15) {
+            do {
+                System.out.println("Длина пароля должна составлять от 8 до 15 символов");
+                PW = sc.nextLine();
+            } while (PW.length() < 8 || PW.length() > 15);
+        }
+        System.out.printf("%s, Ваш новый пароль: %s", name, PW);
+
+    }
+
+    public static void module_4_5() {
+        int i, j;
+        String[] result = new String[5];
+        int[][] points = {
+                {4, 3, 2, 5, 1},
+                {3, 4, 4, 6, 2},
+                {2, 5, 4, 3, 2},
+                {8, 4, 2, 0, 4},
+                {4, 4, 3, 2, 9},
+        };
+
+        int[] sumPoints = new int[5];
+        String[] names = {"Alex", "Igor", "Michael", "Nicolay", "Vladimir"};
+        for (int k = 0; k < names.length; k++) {
+            for (int l = 0; l < points[k].length; l++) {
+                sumPoints[l] += points[k][l];
+            }
+            result[k] = names[k] + " " + sumPoints[k];
+            System.out.println(result[k]);
+        }
+    }
+
+    public static boolean checkBook(Book[] bookList, Book book){
+        for (Book item: bookList){
+            if (item != null && item.name.equals(book.name) && item.date == book.date){
+                System.out.println("Данная книга уже есть в картотеке");
+                return true;
+            }
+        }
+        System.out.println("Данной книги нет");
+        return false;
+    }
+
+    public static void addBook(Book[] bookList, Book book){
+        if(!checkBook(bookList, book)){
+            for (int i = 0; i < bookList.length; i++) {
+                if(bookList[i] == null){
+                    bookList[i] = book;
+                    System.out.println("Книга добавлена в картотеку");
+                    break;
+                }
+                if(i == bookList.length - 1){
+                    System.out.println("Картотека переполнена");
+                }
+            }
+        }
+    }
+
+    public static void printAllBookList(Book[] bookList) {
+        for (int i = 0; i < bookList.length; i++) {
+            if (bookList[i] != null) {
+                System.out.println(bookList[i].name + " " + bookList[i].date + " " + bookList[i].price);
+            }
+        }
+    }
+
+    public static void module_4_6() {
+        Book[] bookList = new Book[99];
+        Book book1 = new Book("The Hobbits", 1000, 1996);
+        addBook(bookList, book1);
+        printAllBookList(bookList);
+    }
+
 }
