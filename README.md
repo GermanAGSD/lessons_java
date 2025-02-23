@@ -52,3 +52,13 @@
 1.6 Многопоточное программирование 
 - Многопоточная программа состоит из двух или более частей, которые могут выполняться одновременно
 - на основе процессов и на основе потоков
+- Mathematick         
+        System.out.println(Math.abs(-10));      // 10 (модуль числа)
+        System.out.println(Math.pow(2, 3));     // 8.0 (2 в степени 3)
+        System.out.println(Math.sqrt(16));      // 4.0 (квадратный корень)
+        System.out.println(Math.max(5, 10));    // 10 (максимум)
+        System.out.println(Math.min(5, 10));    // 5 (минимум)
+        System.out.println(Math.round(4.6));    // 5 (округление)
+        System.out.println(Math.floor(4.9));    // 4.0 (округление вниз)
+        System.out.println(Math.ceil(4.1));     // 5.0 (округление вверх)
+        System.out.println(Math.random());      // случайное число от 0.0 до 1.0
