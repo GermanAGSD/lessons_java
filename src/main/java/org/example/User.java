@@ -27,9 +27,12 @@ public class User {
         this.password = password;
     }
 
-    public String  upperTo(String name){
-        checkNullOrEmpty(name);
-        return name.substring(0,1).toUpperCase() + name.substring(1);
+    public String upperTo(String name){
+
+        if(checkNullOrEmpty(name) != null){
+            return name.substring(0,1).toUpperCase() + name.substring(1);
+        }
+        return null;
     }
 
     public String checkNumber(String phoneNumber){

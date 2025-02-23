@@ -262,9 +262,9 @@ public class lessons_skillfactory_1 {
         }
     }
 
-    public static boolean checkBook(Book[] bookList, Book book){
-        for (Book item: bookList){
-            if (item != null && item.name.equals(book.name) && item.date == book.date){
+    public static boolean checkBook(Book[] bookList, Book book) {
+        for (Book item : bookList) {
+            if (item != null && item.name.equals(book.name) && item.date == book.date) {
                 System.out.println("Данная книга уже есть в картотеке");
                 return true;
             }
@@ -273,15 +273,15 @@ public class lessons_skillfactory_1 {
         return false;
     }
 
-    public static void addBook(Book[] bookList, Book book){
-        if(!checkBook(bookList, book)){
+    public static void addBook(Book[] bookList, Book book) {
+        if (!checkBook(bookList, book)) {
             for (int i = 0; i < bookList.length; i++) {
-                if(bookList[i] == null){
+                if (bookList[i] == null) {
                     bookList[i] = book;
                     System.out.println("Книга добавлена в картотеку");
                     break;
                 }
-                if(i == bookList.length - 1){
+                if (i == bookList.length - 1) {
                     System.out.println("Картотека переполнена");
                 }
             }
@@ -303,4 +303,101 @@ public class lessons_skillfactory_1 {
         printAllBookList(bookList);
     }
 
+    public static void module_4_7() {
+        double[] arr = {1.3, 3.2, 5.1, 4.7};
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+        double total = 0;
+        for (int j = 0; j < arr.length; j++) {
+            total += arr[j];
+        }
+        System.out.println(total);
+
+        double max = Double.MIN_VALUE;
+        for (int k = 0; k < arr.length; k++) {
+            if (arr[k] > max) {
+                max = arr[k];
+            }
+        }
+        System.out.println(max);
+    }
+
+    public static void module_4_8() {
+        String original = "German Hello";
+        String reverse = new StringBuilder(original).reverse().toString();
+        System.out.println(reverse);
+        StringBuffer sb = new StringBuffer(original);
+        System.out.println(sb.toString());
+    }
+
+    public static String[] split3(String str) {
+        return str.trim().split("\\s+");
+    }
+
+    public static void module_4_9() {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Arrays.sort(arr);
+        int index = Arrays.binarySearch(arr, 9);
+        System.out.println(index);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        list.add("Pear");
+        System.out.println(list);
+
+
+        ArrayList<Map<Integer, String>> list1 = new ArrayList<>();
+        Map<Integer, String> map1 = new HashMap<>();
+        map1.put(1, "Apple");
+        map1.put(2, "Banana");
+        map1.put(3, "Orange");
+        map1.put(4, "Pear");
+
+        list1.add(map1);
+        // Сортировка по минимальному ключу в каждой карте
+
+        System.out.println(list1);
+    }
+
+    public static String upperTo(String name) {
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+
+    public static void module_4_10() {
+        System.out.println(upperTo("German"));
+        System.out.println(pochoviYashik("german@gmail.com"));
+    }
+
+    public static String pochoviYashik(String post) {
+        int indexSobaka = post.indexOf("@");
+        System.out.println(indexSobaka);
+        String pochtoviYashik = post.substring(indexSobaka + 1); // gmail.com
+        return pochtoviYashik;
+    }
+
+    public static void module_4_11() {
+        int[] numbers = new int[100];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = (i % 2 == 0) ? (i + 1) : -(i + 1);
+        }
+        System.out.println(Arrays.toString(numbers));
+        fibonachi();
+    }
+
+    public static void fibonachi() {
+        int[] numbers = new int[10];
+        for (int i = 0; i < numbers.length; i++) {
+            if (i == 0 || i == 1) {
+                numbers[0] = 1;
+                numbers[1] = 1;
+            } else {
+                numbers[i] = numbers[i - 1] + numbers[i - 2];
+            }
+        }
+        System.out.println(Arrays.toString(numbers));
+    }
 }
