@@ -412,4 +412,55 @@ public class lessons_skillfactory_1 {
         System.out.println(Math.ceil(4.1));     // 5.0 (округление вверх)
         System.out.println(Math.random());      // случайное число от 0.0 до 1.0
     }
+
+    public static void module_4_13(){
+        int size = 5; // Размер треугольника (больше 2)
+        int[][] ints = new int[size][]; // Зубчатый массив
+
+        // Заполняем массив
+        for (int i = 0; i < size; i++) {
+            ints[i] = new int[i + 1]; // Длина строки = i + 1
+            ints[i][0] = 1;           // Первый элемент всегда 1
+            ints[i][i] = 1;           // Последний элемент всегда 1
+
+            for (int j = 1; j < i; j++) {
+                ints[i][j] = ints[i - 1][j - 1] + ints[i - 1][j]; // Заполняем сумму двух верхних элементов
+            }
+        }
+
+        // Выводим массив
+        for (int[] row : ints) {
+            for (int num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+    public static void module_4_14() {
+        int size = 4;
+        String[][] board = new String[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                board[i][j] = (char) ('A' + j) + String.valueOf(size - i);
+            }
+        }
+
+        // Выводим доску
+        for (String[] row : board) {
+            for (String cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void module_4_15() {
+        Tank tank1 = new Tank();
+        Tank tank2 = new Tank();
+        Tank tank3 = new Tank();
+        tank1.printPosition();
+        tank2.printPosition();
+        tank3.printPosition();
+    }
 }
