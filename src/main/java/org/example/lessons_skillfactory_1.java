@@ -1,6 +1,8 @@
 package org.example;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class lessons_skillfactory_1 {
 
@@ -462,5 +464,26 @@ public class lessons_skillfactory_1 {
         tank1.printPosition();
         tank2.printPosition();
         tank3.printPosition();
+    }
+
+    //    Регулярные выражения
+    public static void module_4_16(){
+        String textFromLogsFile = "WrongMsisdnError SuccessfulTransaction TimeOutError InternalError SuccessfulTransaction ExternalIDError SuccessfulTransaction WrongIDError InvalidArgumentError SuccessfulTransaction SuccessfulTransaction SuccessfulTransaction WrongMsisdnError";
+        String[] str = textFromLogsFile.split(" ");
+        for(String s: str){
+            if(Pattern.matches(".*?Error", s)){
+                System.out.println(s+" ");
+            }
+        }
+    }
+
+    public static void module_4_17() {
+        String text = "Рекс Лорд Лом Шарик Бобик Шалун";
+        Pattern pattern = Pattern.compile("\\b[Л][а-я]+\\b");
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            System.out.println(text.substring(matcher.start(), matcher.end()));
+        }
     }
 }
