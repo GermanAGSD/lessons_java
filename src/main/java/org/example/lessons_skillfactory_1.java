@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -110,6 +111,7 @@ public class lessons_skillfactory_1 {
         }
     }
 
+
     public static void module_3_3() {
         Random rand = new Random();
         int randInt = rand.nextInt(100);
@@ -123,7 +125,7 @@ public class lessons_skillfactory_1 {
     }
 
     public static void module_4() {
-        int[] arr = {13, 32, 39, 4, 55, 36, 7, 82, 99, 10};
+        int[] arr = new int[]{13, 32, 39, 4, 55, 36, 7, 82, 99, 10};
         int[] copy = arr;
         for (int i = 0; i < copy.length; i++) {
             copy[i] = copy[i] * 2;
@@ -140,7 +142,7 @@ public class lessons_skillfactory_1 {
         // Копирование массива полностью
         int[] arr2 = {22, 4, 5, 6};
         int[] copy2 = Arrays.copyOf(arr2, arr2.length);
-        System.out.println(copy2[0]);
+        System.out.println(Arrays.toString(copy2));
 
         // копирует часть массива
         int[] copy3 = Arrays.copyOfRange(arr2, 1, 3);
@@ -213,7 +215,7 @@ public class lessons_skillfactory_1 {
 
         // Сортируем по длине
         Arrays.sort(words, Comparator.comparingInt(String::length));
-
+        System.out.println(words.length);
         // Делаем каждое слово с заглавной буквы
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
@@ -306,11 +308,12 @@ public class lessons_skillfactory_1 {
     }
 
     public static void module_4_7() {
-        double[] arr = {1.3, 3.2, 5.1, 4.7};
+        double[] arr = new double[] {1.3, 3.2, 5.1, 4.7};
 
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
+        
         double total = 0;
         for (int j = 0; j < arr.length; j++) {
             total += arr[j];
@@ -360,6 +363,7 @@ public class lessons_skillfactory_1 {
         map1.put(4, "Pear");
 
         list1.add(map1);
+        System.out.println(map1);
         // Сортировка по минимальному ключу в каждой карте
 
         System.out.println(list1);
@@ -367,6 +371,12 @@ public class lessons_skillfactory_1 {
 
     public static String upperTo(String name) {
         return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+
+    public static void name(){
+        String name = "german";
+        String nameUpper = upperTo(name);
+        System.out.println(nameUpper);
     }
 
     public static void module_4_10() {
@@ -485,5 +495,29 @@ public class lessons_skillfactory_1 {
         while (matcher.find()) {
             System.out.println(text.substring(matcher.start(), matcher.end()));
         }
+    }
+
+    public static void sort(){
+        String[] array = {"баркас", "елка", "баржа", "арбузы", "тыква"};
+        Arrays.sort(array);
+        System.out.println(Arrays.toString(array));
+    }
+
+    public static void sortlength(){
+        String[] array = {"баркас", "елка", "баржа", "арбузы", "тыква"};
+        ComparatorByLength comp = new ComparatorByLength();
+        Arrays.sort(array, comp);
+
+        for(String word: array){
+            System.out.println(word);
+        }
+    }
+
+    public static void jframeTest(){
+        JFrame jr = new JFrame();
+        jr.setSize(300,400);
+        jr.addMouseListener(new SimpleClickListener());
+        jr.setVisible(true);
+
     }
 }

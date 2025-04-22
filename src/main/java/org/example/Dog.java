@@ -4,6 +4,10 @@ public class Dog {
     private String name;
     private int age;
 
+    Dog(){
+        System.out.println("Dog Constructor");
+    }
+
     Dog(String name, int age) {
         this.name = name;
         this.age = age;

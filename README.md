@@ -62,3 +62,5 @@
         System.out.println(Math.floor(4.9));    // 4.0 (округление вниз)
         System.out.println(Math.ceil(4.1));     // 5.0 (округление вверх)
         System.out.println(Math.random());      // случайное число от 0.0 до 1.0
+- В SOLID — буква «S» является аббревиатурой, которая образована сокращением от английского 
+названия принципа единственной ответственности (SRP, Single Responsibility Principle).
