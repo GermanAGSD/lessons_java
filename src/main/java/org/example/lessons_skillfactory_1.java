@@ -520,4 +520,23 @@ public class lessons_skillfactory_1 {
         jr.setVisible(true);
 
     }
+
+    public static void MouseBoard(){
+        MotherBoard mb = new MotherBoard();
+        System.out.println("Total Ports = " + mb.usb.getTotalPorts());
+        System.out.println(MotherBoard.USB.wikilink);
+
+//        MotherBoard.USB usb = MotherBoard.USB(10000, 20500) // разъемов в сутки
+    }
+
+    public static void remoteTv(){
+        TVset tv = new TVset();
+        TVset.Remote rem = tv.getRemote();
+        rem.turnOn();
+        System.out.println(tv.toString());
+        rem.setChannel(10);
+        System.out.println(tv.toString());
+    }
+
+
 }
