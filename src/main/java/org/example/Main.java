@@ -1,6 +1,7 @@
 package org.example;
 
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ import static org.example.lessons_skillfactory_1.*;
 */
 public class Main {
 //    Определение класса - метод main
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         String name = "German"; // Строковыее значения
         byte peremennay_1 = 127; // : -128
@@ -85,7 +86,9 @@ public class Main {
 //        jframeTest();
 //        MouseBoard();
 
-        remoteTv();
+//        remoteTv();
+//        libr_16();
+
 
 
 

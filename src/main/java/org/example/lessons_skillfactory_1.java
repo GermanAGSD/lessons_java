@@ -1,6 +1,11 @@
 package org.example;
 
+import com.google.gson.Gson;
+
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -308,12 +313,12 @@ public class lessons_skillfactory_1 {
     }
 
     public static void module_4_7() {
-        double[] arr = new double[] {1.3, 3.2, 5.1, 4.7};
+        double[] arr = new double[]{1.3, 3.2, 5.1, 4.7};
 
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
-        
+
         double total = 0;
         for (int j = 0; j < arr.length; j++) {
             total += arr[j];
@@ -373,7 +378,7 @@ public class lessons_skillfactory_1 {
         return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
-    public static void name(){
+    public static void name() {
         String name = "german";
         String nameUpper = upperTo(name);
         System.out.println(nameUpper);
@@ -425,7 +430,7 @@ public class lessons_skillfactory_1 {
         System.out.println(Math.random());      // случайное число от 0.0 до 1.0
     }
 
-    public static void module_4_13(){
+    public static void module_4_13() {
         int size = 5; // Размер треугольника (больше 2)
         int[][] ints = new int[size][]; // Зубчатый массив
 
@@ -448,6 +453,7 @@ public class lessons_skillfactory_1 {
             System.out.println();
         }
     }
+
     public static void module_4_14() {
         int size = 4;
         String[][] board = new String[size][size];
@@ -477,12 +483,12 @@ public class lessons_skillfactory_1 {
     }
 
     //    Регулярные выражения
-    public static void module_4_16(){
+    public static void module_4_16() {
         String textFromLogsFile = "WrongMsisdnError SuccessfulTransaction TimeOutError InternalError SuccessfulTransaction ExternalIDError SuccessfulTransaction WrongIDError InvalidArgumentError SuccessfulTransaction SuccessfulTransaction SuccessfulTransaction WrongMsisdnError";
         String[] str = textFromLogsFile.split(" ");
-        for(String s: str){
-            if(Pattern.matches(".*?Error", s)){
-                System.out.println(s+" ");
+        for (String s : str) {
+            if (Pattern.matches(".*?Error", s)) {
+                System.out.println(s + " ");
             }
         }
     }
@@ -497,31 +503,31 @@ public class lessons_skillfactory_1 {
         }
     }
 
-    public static void sort(){
+    public static void sort() {
         String[] array = {"баркас", "елка", "баржа", "арбузы", "тыква"};
         Arrays.sort(array);
         System.out.println(Arrays.toString(array));
     }
 
-    public static void sortlength(){
+    public static void sortlength() {
         String[] array = {"баркас", "елка", "баржа", "арбузы", "тыква"};
         ComparatorByLength comp = new ComparatorByLength();
         Arrays.sort(array, comp);
 
-        for(String word: array){
+        for (String word : array) {
             System.out.println(word);
         }
     }
 
-    public static void jframeTest(){
+    public static void jframeTest() {
         JFrame jr = new JFrame();
-        jr.setSize(300,400);
+        jr.setSize(300, 400);
         jr.addMouseListener(new SimpleClickListener());
         jr.setVisible(true);
 
     }
 
-    public static void MouseBoard(){
+    public static void MouseBoard() {
         MotherBoard mb = new MotherBoard();
         System.out.println("Total Ports = " + mb.usb.getTotalPorts());
         System.out.println(MotherBoard.USB.wikilink);
@@ -529,13 +535,239 @@ public class lessons_skillfactory_1 {
 //        MotherBoard.USB usb = MotherBoard.USB(10000, 20500) // разъемов в сутки
     }
 
-    public static void remoteTv(){
+    public static void remoteTv() {
         TVset tv = new TVset();
         TVset.Remote rem = tv.getRemote();
         rem.turnOn();
         System.out.println(tv.toString());
         rem.setChannel(10);
         System.out.println(tv.toString());
+        int c = 5;
+        int n = (short) c;
+        System.out.println();
+    }
+
+    public static void libr() {
+        int c = 5;
+        int d = 3;
+        var i = Math.pow(c, d);
+        System.out.println(i);
+    }
+
+    public static void libr_2() {
+        Date date = new Date();
+        System.out.println(date);
+
+        long time = System.currentTimeMillis();
+        System.out.println(time);
+
+        Calendar calendar = Calendar.getInstance();
+        int era = calendar.get(Calendar.ERA);
+        int year = calendar.get(Calendar.YEAR);
+        int cas = calendar.get(Calendar.HOUR_OF_DAY);
+        System.out.println(era);
+        System.out.println(year);
+        System.out.println(cas);
+        System.out.println(calendar.getTime());
+
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(dateformat.format(calendar.getTime()));
+    }
+
+    public static void libr_3() throws IOException {
+//        File file = new File(directory, "Test.txt");
+//        File file = new File("C:\\", "test1.txt");
+        File file = new File("test1.txt");
+        System.out.println(file.getAbsoluteFile());
+//        Узнать доступен ли для чтения
+        System.out.println(file.canRead()); // true
+        System.out.println(file.exists());
+        boolean mkfile = file.createNewFile();
+        System.out.println(mkfile);
+    }
+
+    public static void libr_4() throws IOException {
+        File file = new File("test_skillfactory");
+        boolean isexist = file.isDirectory();
+        System.out.println(isexist);
+        if (!isexist) {
+            file.mkdir();
+        }
+        String[] files = file.list();
+
+        for (String filename : files) {
+            System.out.println(filename);
+        }
+    }
+
+    public static void libr_5() {
+        int a = -6, b = -3;
+        System.out.println(Mathematics.abs(a));
+        System.out.println(Mathematics.max(a, b));
+        System.out.println(Mathematics.min(a, b));
+
+    }
+
+    public static void libr_6() {
+        byte x = -1;
+        int y = -1;
+        System.out.println(String.format("%08x and %08x", x, y));
+    }
+
+    //    Чтение из файла
+    public static void libr_7() throws IOException {
+        FileInputStreamEx filesRead = new FileInputStreamEx();
+        filesRead.write();
+        filesRead.read();
+        filesRead.qtyCount();
+        filesRead.copyFileUsingStream();
+    }
+
+    public static void libr_8() throws IOException {
+        FileInputStreamEx filesRead = new FileInputStreamEx();
+        filesRead.encoding("test.txt", "Windows-1251", "output.txt", "UTF-8");
+        filesRead.getReceipt();
+
+    }
+
+    public static void libr_9() {
+        int[] array = {1, 2, -1, 5, 3};
+        int s = 0;
+        for (int i = 0; i < array.length; i++) {
+            s += array[i];
+        }
+        System.out.println(s);
+    }
+
+    public static void libr_10() {
+        FileInputStreamEx filesRead = new FileInputStreamEx();
+        try {
+            filesRead.readAllLines();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static void libr_11(){
+
+        char[] charArray = new char[5];
+        charArray[0] = 'r';
+        charArray[1] = 'a';
+        charArray[2] = 'w';
+        charArray[3] = 'c';
+        charArray[4] = 'h';
+        Arrays.sort(charArray);
+        Arrays.fill(charArray, 'f');
+        System.out.println(Arrays.toString(charArray));
+
+        List<Integer> spisok = new ArrayList();
+        boolean spCheck = spisok.add(1);
+        spisok.add(2);
+        System.out.println(spisok);
+        System.out.println(spCheck);
+        int control = spisok.indexOf(1);
+        System.out.println(control);
+
+        Map<Integer, String> map1 = new HashMap();
+        map1.put(0, "German");
+        map1.put(1, "Ivan");
+        System.out.println(map1.containsKey(2));
+        System.out.println(map1);
+        System.out.println(map1.containsValue("German"));
+        System.out.println(map1.keySet());
+        System.out.println(map1.values());
+
+        Set<Integer> set1 = new HashSet();
+        set1.add(1);
+        set1.add(1);
+        set1.add(2);
+        System.out.println(set1.size());
+        System.out.println(set1);
+
+        Queue<Integer> que = new ArrayDeque();
+        que.add(1);
+        que.add(2);
+        System.out.println(que);
+    }
+
+    public static void libr_12() {
+        Queue queue = new ArrayDeque();
+        System.out.println(queue.peek());
+//
+//        Deque queues = new ArrayDeque();
+//        System.out.println(queues.pop());
+
+        Deque queueq = new ArrayDeque();
+        System.out.println(queueq.remove());
+    }
+
+    public static void libr_13() {
+        int numberOfTasks = 5;
+        Queue toDoQueue = new ArrayDeque(numberOfTasks);
+        Boss boss = new Boss(toDoQueue);
+        Worker worker = new Worker(toDoQueue);
+
+        for (int i = 0; i <= numberOfTasks; i++) {
+            boss.giveTask("Задание " + i);
+        }
+        System.out.println("Начальник закончил давать задание");
+
+        for (int i = 0; i <= numberOfTasks; i++) {
+            worker.takeTask();
+        }
+
+        Deque deque = new ArrayDeque();
+        deque.offer(12);
+        deque.add(6);
+        deque.add(4);
+
+        deque.poll();
+        deque.peek();
+        System.out.println(deque.element());
+    }
+
+    public static void libr_14() {
+        Queue<Object> que = new LinkedList();
+        que.add(1);
+        for (int i = 0; i <= 24; i++) {
+            que.add(i);
+        }
+
+        que.add(new Date());
+        que.add(new Date());
+        System.out.println(que);
+        Object element = que.poll();
+        String str = element.toString(); // безопасное приведение
+        System.out.println(str);
+    }
+    public static void libr_15() {
+        Queue<String> queue = new LinkedList();
+        queue.add("4");
+        queue.add("5");
+        System.out.println(queue);
+
+        int cast = Integer.parseInt(queue.poll());
+        System.out.println(cast);
+
+    }
+
+    public static void libr_16() {
+        Queue<String> keywords = new LinkedList<>();
+        keywords.add("Java");
+        printList(keywords); // не компилируется
+    }
+
+    private static void printList(Queue<?> keywords) {
+        for (Object o : keywords) {
+            System.out.println(o);
+        }
+    }
+
+    public static void collection_lessons() {
+        Collection<? extends String> collection = new LinkedList<>(); // 2
+        collection.add("Hello"); // 3
+        System.out.println(collection.size());
     }
 
 

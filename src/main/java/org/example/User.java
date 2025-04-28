@@ -3,14 +3,18 @@ import com.google.gson.Gson;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class User {
-
+    private HashMap<String, User> storage;
+    private String id;
     private String name;
     private String surname;
     private String phoneNumber;
     private String password;
     User() {}
+
 
     public String checkNullOrEmpty(String value){
         if(value == null && value.isEmpty()){
@@ -21,10 +25,17 @@ public class User {
     }
 
     User(String name, String surname, String phoneNumber, String password ){
+        this.id = UUID.randomUUID().toString();
         this.name = upperTo(name);
         this.surname = upperTo(surname);
         this.phoneNumber = checkNumber(phoneNumber);
         this.password = password;
+        storage = new HashMap<>();
+    }
+
+    public void addUser(User usr){
+        storage.put(this.name, usr);
+        System.out.println("User Added " + storage);
     }
 
     public String upperTo(String name){
@@ -62,6 +73,12 @@ public class User {
         Gson gson = new Gson();
         String json = gson.toJson(user);
         System.out.println(json);
+    }
+
+    // Новый метод — печать всех пользователей через Gson
+    public void printStorage() {
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(storage));
     }
 
 

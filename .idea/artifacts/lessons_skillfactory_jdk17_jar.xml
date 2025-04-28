@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lessons_skillfactory_jdk17:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/lessons_skillfactory_jdk17_jar</output-path>
+    <root id="archive" name="lessons_skillfactory_jdk17.jar">
+      <element id="module-output" name="lessons_skillfactory_jdk17" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.36.0/error_prone_annotations-2.36.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.12.1/gson-2.12.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
