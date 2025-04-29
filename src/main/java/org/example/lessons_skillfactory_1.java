@@ -3,9 +3,11 @@ package org.example;
 import com.google.gson.Gson;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -764,10 +766,418 @@ public class lessons_skillfactory_1 {
         }
     }
 
-    public static void collection_lessons() {
-        Collection<? extends String> collection = new LinkedList<>(); // 2
-        collection.add("Hello"); // 3
-        System.out.println(collection.size());
+//    public static void collection_lessons() {
+//        Collection<? extends String> collection = new LinkedList<>(); // 2
+//        collection.add("Hello"); // 3
+//        System.out.println(collection.size());
+//    }
+
+    public static void processAnyList(List<Integer> list) {
+        if (list instanceof LinkedList) {
+            LinkedList<Integer> linkedList = (LinkedList<Integer>) list;
+            Integer peekedValue = linkedList.peek();
+        } else {
+            // работаем с методами интерфейса или делаем каст на другую имплементацию
+        }
+    }
+
+    private static final String TOYOTA = "Toyota";
+    private static final String BMW = "Bmw";
+    private static final String KIA = "Kia";
+
+
+    public static void libr_17(){
+
+
+        Car cars = new Car(TOYOTA, "Camri", false);
+        Car cars2 = new Car(KIA, "Rio", false);
+        Car cars3 = new Car(BMW, "X5", false);
+        Car cars4 = new Car(BMW, "X3", false);
+        Car cars5 = new Car(BMW, "X6", false);
+        Car cars6 = new Car(TOYOTA, "Raw 4", true);
+        Car cars7 = new Car(KIA, "Ceed", false);
+        Car cars8 = new Car(TOYOTA, "Yaris", false);
+        Car cars9 = new Car(BMW, "320i", false);
+        Car cars10 = new Car(TOYOTA, "Corolla", false);
+
+        List<Car> list = new ArrayList();
+        list.add(cars);
+        list.add(cars2);
+        list.add(cars3);
+        list.add(cars4);
+        list.add(cars5);
+        list.add(cars6);
+        list.add(cars7);
+        list.add(cars8);
+        list.add(cars9);
+        list.add(cars10);
+
+//        for (Car car : list) {
+//
+//            if (car.getBrand().equals(KIA)) {
+//                list.remove(car);
+//            } else if (cars.getBrand().equals(TOYOTA)) {
+//                cars.setOnSale(true);
+//            }
+//        }
+
+        Iterator<Car> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Car car = iterator.next();
+            if (car.getBrand().equals(KIA)) {
+                iterator.remove();
+            }else if (car.getBrand().equals(TOYOTA)) {
+                car.setOnSale(true);
+            }
+        }
+
+        for(Car carAll: list){
+            System.out.println(carAll.toString());
+        }
+    }
+
+    public static void libr_18(){
+        List<Integer> list = new LinkedList<>();
+
+        for (int i = 0; i < 100; i++) {
+            if(i % 2 == 0){
+                list.add(i);
+            }
+        }
+        System.out.println(list);
+    }
+
+    public static void libr_19(){
+        Set set = new LinkedHashSet<>();
+        Set set2 = new HashSet<>();
+
+        Car cars = new Car(TOYOTA, "Camri", false);
+        Car cars2 = new Car(KIA, "Rio", false);
+        Car cars3 = new Car(BMW, "X5", false);
+        Car cars4 = new Car(BMW, "X3", false);
+        Car cars5 = new Car(BMW, "X6", false);
+        Car cars6 = new Car(TOYOTA, "Raw 4", true);
+        Car cars7 = new Car(KIA, "Ceed", false);
+        Car cars8 = new Car(TOYOTA, "Yaris", false);
+        Car cars9 = new Car(BMW, "320i", false);
+        Car cars10 = new Car(TOYOTA, "Corolla", false);
+        Car cars11 = new Car(TOYOTA, "Camri", false);
+        Car cars12 = new Car(KIA, "Rio", false);
+        Car cars13 = new Car(BMW, "X5", false);
+        Car cars14 = new Car(BMW, "X3", false);
+        Car cars15 = new Car(BMW, "X6", false);
+        Car cars16 = new Car(TOYOTA, "Raw 4", true);
+        Car cars17 = new Car(KIA, "Ceed", false);
+        Car cars18 = new Car(TOYOTA, "Yaris", false);
+        Car cars19 = new Car(BMW, "320i", false);
+        Car cars20 = new Car(TOYOTA, "Corolla", false);
+        Car cars21 = new Car(KIA, "Rio", false);
+        Car cars22 = new Car(BMW, "X5", false);
+        Car cars23 = new Car(BMW, "X3", false);
+        Car cars24 = new Car(BMW, "X6", false);
+        Car cars25 = new Car(TOYOTA, "Raw 4", true);
+        Car cars26 = new Car(KIA, "Ceed", false);
+        Car cars27 = new Car(TOYOTA, "Yaris", false);
+        Car cars28 = new Car(BMW, "320i", false);
+        Car cars29 = new Car(TOYOTA, "Corolla", false);
+        Car cars30 = new Car(TOYOTA, "Corolla", false);
+
+        List<Car> list = new ArrayList();
+        list.add(cars);
+        list.add(cars2);
+        list.add(cars3);
+        list.add(cars4);
+        list.add(cars5);
+        list.add(cars6);
+        list.add(cars7);
+        list.add(cars8);
+        list.add(cars9);
+        list.add(cars10);
+        list.add(cars11);
+        list.add(cars12);
+        list.add(cars13);
+        list.add(cars14);
+        list.add(cars15);
+        list.add(cars16);
+        list.add(cars17);
+        list.add(cars18);
+        list.add(cars19);
+        list.add(cars20);
+        list.add(cars21);
+        list.add(cars22);
+        list.add(cars23);
+        list.add(cars24);
+        list.add(cars25);
+        list.add(cars26);
+        list.add(cars27);
+        list.add(cars28);
+        list.add(cars29);
+        list.add(cars30);
+
+        Set<Car> carset = new HashSet<>(list);
+        for(Car car: carset){
+            System.out.println(car.toString());
+        }
+
+
+    }
+
+    public static void libr_20(){
+        Car cars = new Car(TOYOTA, "Camri", false);
+        Car cars2 = new Car(KIA, "Rio", false);
+        Car cars3 = new Car(BMW, "X5", false);
+        Car cars4 = new Car(BMW, "X3", false);
+        Car cars5 = new Car(BMW, "X6", false);
+        Car cars6 = new Car(TOYOTA, "Raw 4", true);
+        Car cars7 = new Car(KIA, "Ceed", false);
+        Car cars8 = new Car(TOYOTA, "Yaris", false);
+        Car cars9 = new Car(BMW, "320i", false);
+        Car cars10 = new Car(TOYOTA, "Corolla", false);
+        Car cars11 = new Car(TOYOTA, "Camri", false);
+        Car cars12 = new Car(KIA, "Rio", false);
+        Car cars13 = new Car(BMW, "X5", false);
+        Car cars14 = new Car(BMW, "X3", false);
+        Car cars15 = new Car(BMW, "X6", false);
+        Car cars16 = new Car(TOYOTA, "Raw 4", true);
+        Car cars17 = new Car(KIA, "Ceed", false);
+        Car cars18 = new Car(TOYOTA, "Yaris", false);
+        Car cars19 = new Car(BMW, "320i", false);
+        Car cars20 = new Car(TOYOTA, "Corolla", false);
+        Car cars21 = new Car(KIA, "Rio", false);
+        Car cars22 = new Car(BMW, "X5", false);
+        Car cars23 = new Car(BMW, "X3", false);
+        Car cars24 = new Car(BMW, "X6", false);
+        Car cars25 = new Car(TOYOTA, "Raw 4", true);
+        Car cars26 = new Car(KIA, "Ceed", false);
+        Car cars27 = new Car(TOYOTA, "Yaris", false);
+        Car cars28 = new Car(BMW, "320i", false);
+        Car cars29 = new Car(TOYOTA, "Corolla", false);
+        Car cars30 = new Car(TOYOTA, "Corolla", false);
+
+        List<Car> list = new ArrayList();
+        list.add(cars);
+        list.add(cars2);
+        list.add(cars3);
+        list.add(cars4);
+        list.add(cars5);
+        list.add(cars6);
+        list.add(cars7);
+        list.add(cars8);
+        list.add(cars9);
+        list.add(cars10);
+        list.add(cars11);
+        list.add(cars12);
+        list.add(cars13);
+        list.add(cars14);
+        list.add(cars15);
+        list.add(cars16);
+        list.add(cars17);
+        list.add(cars18);
+        list.add(cars19);
+        list.add(cars20);
+        list.add(cars21);
+        list.add(cars22);
+        list.add(cars23);
+        list.add(cars24);
+        list.add(cars25);
+        list.add(cars26);
+        list.add(cars27);
+        list.add(cars28);
+        list.add(cars29);
+        list.add(cars30);
+
+        Map<Car, Integer> carMap = new HashMap<>();
+        for (Car car: list){
+            if(carMap.containsKey(car)){
+                int value = carMap.get(car);
+                carMap.put(car,++value);
+            }else{
+                carMap.put(car,1);
+            }
+        }
+
+        for (Map.Entry<Car,Integer> carEntry : carMap.entrySet()){
+            System.out.println(carEntry.getKey() + " " + carEntry.getValue());
+        }
+    }
+
+    public static void libr_21() {
+        Set<Product> set = new TreeSet<>();
+        set.add(new Product("SuperBrand", "Kolbasa", 34543234L, LocalDateTime.now()));
+        for (Product product: set){
+            System.out.println(product);
+        }
+
+    }
+
+    public static void libr_22(){
+        Car cars = new Car(TOYOTA, "Camri", false);
+        Car cars2 = new Car(KIA, "Rio", false);
+        Car cars3 = new Car(BMW, "X5", false);
+        Car cars4 = new Car(BMW, "X3", false);
+        Car cars5 = new Car(BMW, "X6", false);
+        Car cars6 = new Car(TOYOTA, "Raw 4", true);
+        Car cars7 = new Car(KIA, "Ceed", false);
+        Car cars8 = new Car(TOYOTA, "Yaris", false);
+        Car cars9 = new Car(BMW, "320i", false);
+        Car cars10 = new Car(TOYOTA, "Corolla", false);
+        Car cars11 = new Car(TOYOTA, "Camri", false);
+        Car cars12 = new Car(KIA, "Rio", false);
+        Car cars13 = new Car(BMW, "X5", false);
+        Car cars14 = new Car(BMW, "X3", false);
+        Car cars15 = new Car(BMW, "X6", false);
+        Car cars16 = new Car(TOYOTA, "Raw 4", true);
+        Car cars17 = new Car(KIA, "Ceed", false);
+        Car cars18 = new Car(TOYOTA, "Yaris", false);
+        Car cars19 = new Car(BMW, "320i", false);
+        Car cars20 = new Car(TOYOTA, "Corolla", false);
+        Car cars21 = new Car(KIA, "Rio", false);
+        Car cars22 = new Car(BMW, "X5", false);
+        Car cars23 = new Car(BMW, "X3", false);
+        Car cars24 = new Car(BMW, "X6", false);
+        Car cars25 = new Car(TOYOTA, "Raw 4", true);
+        Car cars26 = new Car(KIA, "Ceed", false);
+        Car cars27 = new Car(TOYOTA, "Yaris", false);
+        Car cars28 = new Car(BMW, "320i", false);
+        Car cars29 = new Car(TOYOTA, "Corolla", false);
+        Car cars30 = new Car(TOYOTA, "Corolla", false);
+
+        List<Car> list = new ArrayList();
+        list.add(cars);
+        list.add(cars2);
+        list.add(cars3);
+        list.add(cars4);
+        list.add(cars5);
+        list.add(cars6);
+        list.add(cars7);
+        list.add(cars8);
+        list.add(cars9);
+        list.add(cars10);
+        list.add(cars11);
+        list.add(cars12);
+        list.add(cars13);
+        list.add(cars14);
+        list.add(cars15);
+        list.add(cars16);
+        list.add(cars17);
+        list.add(cars18);
+        list.add(cars19);
+        list.add(cars20);
+        list.add(cars21);
+        list.add(cars22);
+        list.add(cars23);
+        list.add(cars24);
+        list.add(cars25);
+        list.add(cars26);
+        list.add(cars27);
+        list.add(cars28);
+        list.add(cars29);
+        list.add(cars30);
+
+        Map<Car, Integer> carMap = new TreeMap<>();
+        for (Car car: list){
+            if(carMap.containsKey(car)){
+                int value = carMap.get(car);
+                carMap.put(car,++value);
+            }else{
+                carMap.put(car,1);
+            }
+        }
+
+        for (Map.Entry<Car,Integer> carEntry : carMap.entrySet()){
+            System.out.println(carEntry.getKey() + " " + carEntry.getValue());
+        }
+    }
+
+    public static void libr_23(){
+        Car cars = new Car(TOYOTA, "Camri", false);
+        Car cars2 = new Car(KIA, "Rio", false);
+        Car cars3 = new Car(BMW, "X5", false);
+        Car cars4 = new Car(BMW, "X3", false);
+        Car cars5 = new Car(BMW, "X6", false);
+        Car cars6 = new Car(TOYOTA, "Raw 4", true);
+        Car cars7 = new Car(KIA, "Ceed", false);
+        Car cars8 = new Car(TOYOTA, "Yaris", false);
+        Car cars9 = new Car(BMW, "320i", false);
+        Car cars10 = new Car(TOYOTA, "Corolla", false);
+        Car cars11 = new Car(TOYOTA, "Camri", false);
+        Car cars12 = new Car(KIA, "Rio", false);
+        Car cars13 = new Car(BMW, "X5", false);
+        Car cars14 = new Car(BMW, "X3", false);
+        Car cars15 = new Car(BMW, "X6", false);
+        Car cars16 = new Car(TOYOTA, "Raw 4", true);
+        Car cars17 = new Car(KIA, "Ceed", false);
+        Car cars18 = new Car(TOYOTA, "Yaris", false);
+        Car cars19 = new Car(BMW, "320i", false);
+        Car cars20 = new Car(TOYOTA, "Corolla", false);
+        Car cars21 = new Car(KIA, "Rio", false);
+        Car cars22 = new Car(BMW, "X5", false);
+        Car cars23 = new Car(BMW, "X3", false);
+        Car cars24 = new Car(BMW, "X6", false);
+        Car cars25 = new Car(TOYOTA, "Raw 4", true);
+        Car cars26 = new Car(KIA, "Ceed", false);
+        Car cars27 = new Car(TOYOTA, "Yaris", false);
+        Car cars28 = new Car(BMW, "320i", false);
+        Car cars29 = new Car(TOYOTA, "Corolla", false);
+        Car cars30 = new Car(TOYOTA, "Corolla", false);
+
+        List<Car> list = new ArrayList();
+        list.add(cars);
+        list.add(cars2);
+        list.add(cars3);
+        list.add(cars4);
+        list.add(cars5);
+        list.add(cars6);
+        list.add(cars7);
+        list.add(cars8);
+        list.add(cars9);
+        list.add(cars10);
+        list.add(cars11);
+        list.add(cars12);
+        list.add(cars13);
+        list.add(cars14);
+        list.add(cars15);
+        list.add(cars16);
+        list.add(cars17);
+        list.add(cars18);
+        list.add(cars19);
+        list.add(cars20);
+        list.add(cars21);
+        list.add(cars22);
+        list.add(cars23);
+        list.add(cars24);
+        list.add(cars25);
+        list.add(cars26);
+        list.add(cars27);
+        list.add(cars28);
+        list.add(cars29);
+        list.add(cars30);
+
+        Set<Car> carSet = new TreeSet<>(new CarComparator().reversed());
+        carSet.addAll(list);
+        for(Car car : carSet){
+            System.out.println(car);
+        }
+    }
+
+    public static void libr_24(){
+        StockAccount stockAccount = new StockAccount();
+        stockAccount.start();
+        long profit = 0;
+        Scanner scan = new Scanner(System.in);
+        String command =  "";
+        while(!command.equals("exit")){
+            command = scan.next();
+            switch(command){
+                case "check":
+                    System.out.println(stockAccount.money);
+                    break;
+                case "fix":
+                    profit += (long)stockAccount.money - 1000;
+                    System.out.println("Profit " + profit);
+                    stockAccount.money = 1000;
+            }
+        }
     }
 
 

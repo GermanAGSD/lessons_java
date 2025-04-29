@@ -1,9 +1,16 @@
 package org.example;
 
 
+import Server.Server_socket;
+
+
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.example.lessons_books.*;
@@ -88,8 +95,14 @@ public class Main {
 
 //        remoteTv();
 //        libr_16();
+//        List arr = new LinkedList();
+//        processAnyList(arr);
+//        libr_24();
 
-
+        Server_socket.server();
+        Socket clientSocket = new Socket();
+        ClientNet client = new ClientNet(clientSocket);
+        client.run();
 
 
 
