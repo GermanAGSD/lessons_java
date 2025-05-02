@@ -7,32 +7,32 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.util.ArrayList;
+
 public class Server_socket {
-    ArrayList<NetClient> clients = new ArrayList<>();
-    ServerSocket server;
-    Server_socket() throws IOException {
-        server = new ServerSocket(1234);
-    }
+    static ArrayList<ClientHandler> clients = new ArrayList<>();
 
-    public void run(){
+    public static void server() throws IOException {
+        ServerSocket server = new ServerSocket(1234);
+        System.out.println("Waiting for connection...");
+
         while (true) {
+            Socket clientSocket = server.accept();
+            System.out.println("Client connected!");
 
-            try {
-                Socket clientSocket = server.accept();
-                System.out.println("Client connected!");
+            ClientHandler client = new ClientHandler(clientSocket);
+            clients.add(client);
 
-                ClientHandler client = new ClientHandler(clientSocket);
-
-                Thread thread = new Thread(client);
-                thread.start(); // запускаем обработку клиента в отдельном потоке
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            Thread thread = new Thread(client);
+            thread.start();
         }
     }
-    public static void server() throws IOException {
-
-    }
-
 
 }

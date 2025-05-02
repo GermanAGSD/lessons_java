@@ -6,11 +6,19 @@ import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class lessons_skillfactory_1 {
 
@@ -651,7 +659,7 @@ public class lessons_skillfactory_1 {
 
     }
 
-    public static void libr_11(){
+    public static void libr_11() {
 
         char[] charArray = new char[5];
         charArray[0] = 'r';
@@ -743,6 +751,7 @@ public class lessons_skillfactory_1 {
         String str = element.toString(); // безопасное приведение
         System.out.println(str);
     }
+
     public static void libr_15() {
         Queue<String> queue = new LinkedList();
         queue.add("4");
@@ -786,7 +795,7 @@ public class lessons_skillfactory_1 {
     private static final String KIA = "Kia";
 
 
-    public static void libr_17(){
+    public static void libr_17() {
 
 
         Car cars = new Car(TOYOTA, "Camri", false);
@@ -826,28 +835,28 @@ public class lessons_skillfactory_1 {
             Car car = iterator.next();
             if (car.getBrand().equals(KIA)) {
                 iterator.remove();
-            }else if (car.getBrand().equals(TOYOTA)) {
+            } else if (car.getBrand().equals(TOYOTA)) {
                 car.setOnSale(true);
             }
         }
 
-        for(Car carAll: list){
+        for (Car carAll : list) {
             System.out.println(carAll.toString());
         }
     }
 
-    public static void libr_18(){
+    public static void libr_18() {
         List<Integer> list = new LinkedList<>();
 
         for (int i = 0; i < 100; i++) {
-            if(i % 2 == 0){
+            if (i % 2 == 0) {
                 list.add(i);
             }
         }
         System.out.println(list);
     }
 
-    public static void libr_19(){
+    public static void libr_19() {
         Set set = new LinkedHashSet<>();
         Set set2 = new HashSet<>();
 
@@ -915,14 +924,14 @@ public class lessons_skillfactory_1 {
         list.add(cars30);
 
         Set<Car> carset = new HashSet<>(list);
-        for(Car car: carset){
+        for (Car car : carset) {
             System.out.println(car.toString());
         }
 
 
     }
 
-    public static void libr_20(){
+    public static void libr_20() {
         Car cars = new Car(TOYOTA, "Camri", false);
         Car cars2 = new Car(KIA, "Rio", false);
         Car cars3 = new Car(BMW, "X5", false);
@@ -987,16 +996,16 @@ public class lessons_skillfactory_1 {
         list.add(cars30);
 
         Map<Car, Integer> carMap = new HashMap<>();
-        for (Car car: list){
-            if(carMap.containsKey(car)){
+        for (Car car : list) {
+            if (carMap.containsKey(car)) {
                 int value = carMap.get(car);
-                carMap.put(car,++value);
-            }else{
-                carMap.put(car,1);
+                carMap.put(car, ++value);
+            } else {
+                carMap.put(car, 1);
             }
         }
 
-        for (Map.Entry<Car,Integer> carEntry : carMap.entrySet()){
+        for (Map.Entry<Car, Integer> carEntry : carMap.entrySet()) {
             System.out.println(carEntry.getKey() + " " + carEntry.getValue());
         }
     }
@@ -1004,13 +1013,13 @@ public class lessons_skillfactory_1 {
     public static void libr_21() {
         Set<Product> set = new TreeSet<>();
         set.add(new Product("SuperBrand", "Kolbasa", 34543234L, LocalDateTime.now()));
-        for (Product product: set){
+        for (Product product : set) {
             System.out.println(product);
         }
 
     }
 
-    public static void libr_22(){
+    public static void libr_22() {
         Car cars = new Car(TOYOTA, "Camri", false);
         Car cars2 = new Car(KIA, "Rio", false);
         Car cars3 = new Car(BMW, "X5", false);
@@ -1075,21 +1084,21 @@ public class lessons_skillfactory_1 {
         list.add(cars30);
 
         Map<Car, Integer> carMap = new TreeMap<>();
-        for (Car car: list){
-            if(carMap.containsKey(car)){
+        for (Car car : list) {
+            if (carMap.containsKey(car)) {
                 int value = carMap.get(car);
-                carMap.put(car,++value);
-            }else{
-                carMap.put(car,1);
+                carMap.put(car, ++value);
+            } else {
+                carMap.put(car, 1);
             }
         }
 
-        for (Map.Entry<Car,Integer> carEntry : carMap.entrySet()){
+        for (Map.Entry<Car, Integer> carEntry : carMap.entrySet()) {
             System.out.println(carEntry.getKey() + " " + carEntry.getValue());
         }
     }
 
-    public static void libr_23(){
+    public static void libr_23() {
         Car cars = new Car(TOYOTA, "Camri", false);
         Car cars2 = new Car(KIA, "Rio", false);
         Car cars3 = new Car(BMW, "X5", false);
@@ -1155,30 +1164,257 @@ public class lessons_skillfactory_1 {
 
         Set<Car> carSet = new TreeSet<>(new CarComparator().reversed());
         carSet.addAll(list);
-        for(Car car : carSet){
+        for (Car car : carSet) {
             System.out.println(car);
         }
     }
 
-    public static void libr_24(){
+    public static void libr_24() {
         StockAccount stockAccount = new StockAccount();
         stockAccount.start();
         long profit = 0;
         Scanner scan = new Scanner(System.in);
-        String command =  "";
-        while(!command.equals("exit")){
+        String command = "";
+        while (!command.equals("exit")) {
             command = scan.next();
-            switch(command){
+            switch (command) {
                 case "check":
                     System.out.println(stockAccount.money);
                     break;
                 case "fix":
-                    profit += (long)stockAccount.money - 1000;
+                    profit += (long) stockAccount.money - 1000;
                     System.out.println("Profit " + profit);
                     stockAccount.money = 1000;
             }
         }
     }
 
+    public static void libr_25() throws InterruptedException {
+        JoinExample.threadTest();
+    }
 
+    public static void libr_26() throws InterruptedException {
+        InterruptExample.interPotok();
+    }
+
+    public static LocalDate of(int year, int month, int day) {
+        return LocalDate.of(year, month, day);
+    }
+
+    public static void libr_27() {
+//        String Date = String.valueOf(LocalTime.now());
+//        System.out.println(Date);
+//        System.out.println(ZoneId.systemDefault());
+//
+//
+//        LocalTime time = LocalTime.of(16, 30); // строка 1
+//        time.withHour(14).plusMinutes(15);
+//        System.out.println(time);
+//
+//        LocalDate date = LocalDate.of(2020, 1, 1);
+//        Period period = Period.ofYears(4);
+//        System.out.println(date.minus(period));
+//
+//
+//        LocalTime time2 = LocalTime.of(12, 30); // строка 1
+//        time2.minusHours(4); // строка 2
+//        time2 = time2.plusMinutes(30);
+//        System.out.println(time2);
+
+        LocalDate date = LocalDate.of(2029, 8, 4);
+        Period period = Period.ofDays(3);
+        date = date.minus(period); // строка 1
+        Duration duration = Duration.ofHours(12);
+        LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.of(8, 0));
+        dateTime.plus(duration); // строка 2
+        System.out.println(dateTime);
+    }
+
+    public static void libr_28() {
+        int value = 70;
+//        validate(value, new ValidatorImpl());
+        validate(value, (int value1) -> value >= 60);
+    }
+
+    public static void validate(int value, Validator validator) {
+        boolean isValid = validator.validate(value);
+        if (isValid) {
+            System.out.println("Great value valid");
+
+        } else {
+            System.out.println("Value invalid");
+        }
+    }
+
+    @FunctionalInterface
+    interface Worker1 {
+        double doWork(int value, Worker worker);  // метод для работы с лямбдой Worker
+    }
+
+    private static void task(int value, Consumer<Integer> param) {
+    } // вставьте тип
+
+    public static void libr_29() {
+        Lamda getpi = () -> 3.1415;
+        task(12, value -> {
+        });
+
+        Consumer<List<Integer>> methodRef = Collections::sort; // method reference
+        Consumer<List<Integer>> lambda = l -> Collections.sort(l); // lambda-expression
+
+        String str = "abc";
+        Predicate<String> methodRef2 = str::startsWith; // method reference
+        Predicate<String> lambda2 = s -> s.startsWith(s); // lambda-expression
+    }
+
+    public static void libr_30() {
+        Optional<Double> opt = Optional.of(22.4);
+        System.out.println(opt);
+
+        Optional<Double> avg2 = average(5, 4, 2);
+        var avg = average(4, 5, 3);
+
+        System.out.println(avg);
+        System.out.println(avg2);
+
+    }
+
+    public static Optional<Double> average(int... scores) {
+        if (scores.length == 0) {
+            return Optional.empty();
+        }
+        int sum = 0;
+        for (int score : scores) {
+            sum += score;
+        }
+        return Optional.of((double) sum / scores.length);
+    }
+
+    public static void libr_31() {
+        Stream<String> empty = Stream.empty(); // пустой стрим
+        Stream<Integer> singleElement = Stream.of(1); // длина 1
+        Stream<Integer> anyElements = Stream.of(1, 2, 3); // длина 3
+        Stream<Integer> fromArray = Arrays.stream(new Integer[]{1, 2, 3}); // длина 3
+
+        // Создаем список чисел
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // Применяем Stream для фильтрации четных чисел и вычисления их суммы
+        int sumOfEvenNumbers = numbers.stream()  // Преобразуем список в Stream
+                .filter(n -> n % 2 == 0)  // Фильтруем только четные числа
+                .mapToInt(Integer::intValue)  // Преобразуем Integer в int
+                .sum();  // Суммируем
+
+        System.out.println("Сумма четных чисел: " + sumOfEvenNumbers);
+
+        Stream<Integer> infinite = Stream.iterate(2, x -> x * 2);
+        System.out.println(infinite.anyMatch(test -> test / 8 == 0));
+
+
+        Stream<String> s = Stream.of("monkey", "gorilla", "bonobo");
+        s.filter(x -> x.startsWith("m")) // оставляем лишь элементы начинающиеся с m
+                .forEach(System.out::println); // monkey
+
+        Stream<String> stream = Stream.of("duck", "duck", "duck", "goose");
+        stream.distinct() // оставляем уникальные элементы
+                .forEach(System.out::println); // duckgoose
+
+        Stream<Integer> str = Stream.iterate(1, n -> n + 1);
+        str.skip(5) // пропускаем первые 5 элементов
+                .limit(2) // ограничиваем данные 2 элементами
+                .forEach(System.out::println); // 67
+
+    }
+
+    public static void libr_32() {
+        Stream<Integer> stream = Stream.iterate(1, integer -> integer + 1);
+        boolean match = stream
+                .map(String::valueOf)
+                .distinct()
+                .limit(5)
+                .noneMatch(str -> str.length() != 1);
+        System.out.println(match);
+
+        List<String> list = Arrays.asList("Toby", "Anna", "Leroy", "Alex");
+        List<String> filtered = new ArrayList<>();
+        for (String name : list) {
+            if (name.length() == 4) {
+                filtered.add(name);
+            }
+        }
+
+        Collections.sort(filtered);
+        Iterator<String> iter = filtered.iterator();
+
+        if (iter.hasNext()) {
+            System.out.println(iter.next());
+        }
+        if (iter.hasNext()) {
+            System.out.println(iter.next());
+        }
+
+        List<String> listsorted = new ArrayList<>();
+        List<String> list2 = Arrays.asList("Toby", "Anna", "Leroy", "Alex");
+        list2.stream()
+                .filter(n -> n.length() == 4)
+                .sorted()
+                .distinct()
+                .limit(2)
+                .forEach(listsorted::add);
+        System.out.println(listsorted);
+    }
+    public static void libr_33() {
+
+
+        Path path = Paths.get("C:\\test.txt");
+        System.out.println("The path name is: " + path); // The path name is: land/hippo/harry.happy
+
+        for (int i = 0; i < path.getNameCount(); i++) {
+            System.out.println("Element " + i + " is : " + path.getName(i));
+        }
+
+        System.out.println("Filename is " + path.getFileName());
+
+        try{
+            boolean fileExist = Files.exists(Paths.get("C:\\test.txt"));
+            System.out.println(fileExist);
+        } catch (Exception e) {
+            System.out.println("File not found " + e.getMessage());
+        }
+// Чтение и запись
+        Path path2 = Paths.get("C:\\test.txt");
+        try (BufferedReader reader = Files.newBufferedReader(path2, StandardCharsets.US_ASCII)) { // Выбираем кодировку файла
+            // читаем со стрима
+            String currentLine = null;
+            while ((currentLine = reader.readLine()) != null) {
+                System.out.println(currentLine);
+            }
+        } catch (IOException e) {
+            // Handle file I/O exception
+        }
+
+        Path path3 = Paths.get("C:\\test.txt");
+        List<String> data = new ArrayList<>();
+        try (BufferedWriter writer = Files.newBufferedWriter(path3, Charset.defaultCharset())) {
+            writer.write("Hello World");
+        } catch (IOException e) {
+            // Handle file I/O exception
+        }
+
+        Path path4 = Paths.get("C:\\test.txt");
+        try {
+            List<String> lines = Files.readAllLines(path4); // сохраняем строки из файла в лист
+            for (String line : lines) {
+                System.out.println(line); // выводим содержимое на консоль
+            }
+        } catch (IOException exception) {
+            // Handle file I/O exception
+        }
+    }
+
+    public static void libr_34(){
+        User usr = new User("German", "Baklagin", "+79004551650", "cszc6791");
+        UserHouse usrHouse = new UserHouse();
+        usrHouse.House("cszc6791");
+    }
 }

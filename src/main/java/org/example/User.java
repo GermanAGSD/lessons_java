@@ -1,22 +1,24 @@
 package org.example;
 import com.google.gson.Gson;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class User {
+public class User extends Keys {
     private HashMap<String, User> storage;
     private String id;
     private String name;
     private String surname;
     private String phoneNumber;
-    private String password;
+    public String password;
     User() {}
 
 
-    public String checkNullOrEmpty(String value){
+    private static String checkNullOrEmpty(String value){
         if(value == null && value.isEmpty()){
             System.out.println("Value is Empty or Null");
             return null;
@@ -24,12 +26,13 @@ public class User {
         return value;
     }
 
-    User(String name, String surname, String phoneNumber, String password ){
+    public User(String name, String surname, String phoneNumber, String password ){
+
         this.id = UUID.randomUUID().toString();
         this.name = upperTo(name);
         this.surname = upperTo(surname);
         this.phoneNumber = checkNumber(phoneNumber);
-        this.password = password;
+        this.password = generateSHA256Hash(password);
         storage = new HashMap<>();
     }
 
@@ -80,6 +83,7 @@ public class User {
         Gson gson = new Gson();
         System.out.println(gson.toJson(storage));
     }
+
 
 
 

@@ -22,7 +22,7 @@ import static org.example.lessons_skillfactory_1.*;
 */
 public class Main {
 //    Определение класса - метод main
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         String name = "German"; // Строковыее значения
         byte peremennay_1 = 127; // : -128
@@ -99,10 +99,12 @@ public class Main {
 //        processAnyList(arr);
 //        libr_24();
 
-        Server_socket.server();
-        Socket clientSocket = new Socket();
-        ClientNet client = new ClientNet(clientSocket);
-        client.run();
+//        Server_socket.server();
+//        Socket clientSocket = new Socket();
+//        ClientNet client = new ClientNet(clientSocket);
+//        client.run();
+        libr_34();
+
 
 
 
