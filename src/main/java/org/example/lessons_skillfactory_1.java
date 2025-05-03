@@ -1,6 +1,9 @@
 package org.example;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import javax.swing.*;
 import java.io.*;
@@ -1414,7 +1417,67 @@ public class lessons_skillfactory_1 {
 
     public static void libr_34(){
         User usr = new User("German", "Baklagin", "+79004551650", "cszc6791");
+//        usr.toJson(usr);
+//        usr.toString();
         UserHouse usrHouse = new UserHouse();
         usrHouse.House("cszc6791");
+    }
+
+        /*
+        Finish module 1
+
+        Start Database module
+    */
+
+    public static void libr_35() {
+        List<String> lst = new ArrayList<>();
+
+        JsonArray res = DatabasePostgresql.query("SELECT * FROM hosts");
+//        int sum = countIpAddresses(res);
+//        System.out.println(sum);
+        if (res != null) {
+            for (JsonElement element : res) {
+                JsonObject jsonObject = element.getAsJsonObject(); // Преобразуем в JsonObject
+                if (jsonObject.has("ipadress")) { // Проверяем, существует ли ключ "ipadress"
+                    String ipAddress = jsonObject.get("ipadress").getAsString();  // Получаем значение по ключу "ipadress"
+                    lst.add(ipAddress);
+
+                    System.out.println("IP Address: " + ipAddress); // Выводим IP адрес
+                } else {
+                    System.out.println("IP address not found for this entry.");
+                }
+            }
+        }
+//        Два метода
+//        1 метод
+        Set<String> uniqIP = new HashSet<>(lst);
+//        2 метод
+        long uniqCount = lst.stream()
+                .distinct()
+                .sorted()
+                .count();
+        System.out.println(uniqCount);
+        System.out.println(uniqIP.size());
+        System.out.println(lst);
+        passToDatabases();
+    }
+
+    public static int countIpAddresses(JsonArray quaryRes) {
+        int count = 0;
+        if(quaryRes != null) {
+            for (JsonElement element : quaryRes) {
+                JsonObject jsonObject = element.getAsJsonObject();
+                if (jsonObject.has("ipadress")) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static void passToDatabases(){
+        User usr = new User("German", "Baklagin", "+79004551650", "cszc6791");
+
+//        DatabasePostgresql.insertUserToDatabase(usr.name, usr.surname, usr.password, usr.phoneNumber);
     }
 }

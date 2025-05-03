@@ -1,26 +1,26 @@
 package org.example;
 import com.google.gson.Gson;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class User extends Keys {
+public class User extends UserKeys {
     private HashMap<String, User> storage;
-    private String id;
-    private String name;
-    private String surname;
-    private String phoneNumber;
+    public String id;
+    public String name;
+    public String surname;
+    public String phoneNumber;
     public String password;
-    User() {}
 
+    User() {}
+    private static final Logger logger = LogManager.getLogger(User.class);
 
     private static String checkNullOrEmpty(String value){
         if(value == null && value.isEmpty()){
-            System.out.println("Value is Empty or Null");
+            logger.error("Value is Empty or Null");
             return null;
         }
         return value;
@@ -33,6 +33,7 @@ public class User extends Keys {
         this.surname = upperTo(surname);
         this.phoneNumber = checkNumber(phoneNumber);
         this.password = generateSHA256Hash(password);
+        passTOFile(generateSHA256Hash(password));
         storage = new HashMap<>();
     }
 
@@ -52,7 +53,7 @@ public class User extends Keys {
     public String checkNumber(String phoneNumber){
         checkNullOrEmpty(phoneNumber);
         if(phoneNumber.length() < 6){
-            System.out.println("Phone not valid < 6 symbol");
+            logger.error("Phone not valid < 6 symbol");
             return null;
         }
         return phoneNumber;
@@ -67,9 +68,10 @@ public class User extends Keys {
     }
 
 
-    public void showUser(){
+    public String toString(){
         System.out.println("User name: " + this.name + " Surname: " + this.surname +
                 " PhoneNumber: " + this.phoneNumber + " Password hash: " + password);
+        return null;
     }
 
     public void toJson(User user){
@@ -83,9 +85,6 @@ public class User extends Keys {
         Gson gson = new Gson();
         System.out.println(gson.toJson(storage));
     }
-
-
-
 
 }
 

@@ -111,27 +111,28 @@ public class Main {
 
 
 
+
     }
 
-//    public static void quaery() {
-//
-//
-//        Connection connection = DatabasePostgresql.connectToDatabase();
-//
-//        // Выполнение SQL-запроса
-//        if (connection != null) {
-//            String query = "SELECT * FROM hosts";
-////            DatabasePostgresql.executeQueryJson(connection, query);
+    public static void quaery() {
+
+
+        Connection connection = DatabasePostgresql.connectToDatabase();
+
+        // Выполнение SQL-запроса
+        if (connection != null) {
+            String query = "SELECT * FROM hosts";
+//            DatabasePostgresql.executeQueryJson(connection, query);
 //            JSONArray result = DatabasePostgresql.executeQueryJson(connection, query);
 //            System.out.println(result.toString(1));
-//            // Закрытие соединения
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
-//            }
-//        }
-//    }
+            // Закрытие соединения
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
+            }
+        }
+    }
 
     public static void updateData(Integer data){
         int sum = (int)data;
@@ -248,7 +249,7 @@ public class Main {
         String phone = "+79210111954";
         System.out.println(phone.length());
         User user = new User("german", "backlagin", "+79004551650", "cszc6791");
-        user.showUser();
+//        user.showUser();
 
 
     }
