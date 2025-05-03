@@ -1,0 +1,17 @@
+
+CREATE DATABASE developers_db
+    WITH
+    OWNER = your_user_name
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+CREATE TABLE developers (
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL,
+    SPECIALTY VARCHAR(100) NOT NULL,
+    SALARY INT NOT NULL
+);
+
+1. select * from public.userdb;
+2. INSERT INTO testtable (title, description) VALUES ('test1', 'test2');
+3. SELECT password FROM userdb WHERE username = 'German' AND surname = 'Baklagin';"

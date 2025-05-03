@@ -21,7 +21,9 @@ public class UserKeys {
             throw new RuntimeException("SHA-256 algorithm not found", e);
         }
     }
-    // Метод для проверки введённого пароля с хэшированным паролем
+    /*
+            Метод для валидации пароля
+     */
     public static boolean checkPassword(String enteredPassword, String storedHashedPassword) {
         String hashedEnteredPassword = generateSHA256Hash(enteredPassword);
         return hashedEnteredPassword.equals(storedHashedPassword);

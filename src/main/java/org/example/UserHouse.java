@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import static org.example.DatabasePostgresql.connectToDatabase;
 import static org.example.DatabasePostgresql.executeQueryJson;
 
+import static org.example.UserKeys.checkPassword;
 
 public class UserHouse extends UserKeys {
     // Создание логера
