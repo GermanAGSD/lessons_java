@@ -22,7 +22,7 @@ import static org.example.lessons_skillfactory_1.*;
 */
 public class Main {
 //    Определение класса - метод main
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, SQLException {
 
         String name = "German"; // Строковыее значения
         byte peremennay_1 = 127; // : -128
@@ -103,9 +103,11 @@ public class Main {
 //        Socket clientSocket = new Socket();
 //        ClientNet client = new ClientNet(clientSocket);
 //        client.run();
-        libr_34();
-
-
+//        DatabasePostgresqlConnection();
+//        DatabasePostgresqlConnection_2();
+            libr_39();
+//            libr_35();
+//        SpringDatabase();
 
 
 

@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.springframework.beans.BeansException;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.swing.*;
 import java.io.*;
@@ -14,9 +16,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.*;
+import java.util.Date;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -1366,6 +1370,7 @@ public class lessons_skillfactory_1 {
                 .forEach(listsorted::add);
         System.out.println(listsorted);
     }
+
     public static void libr_33() {
 
 
@@ -1378,7 +1383,7 @@ public class lessons_skillfactory_1 {
 
         System.out.println("Filename is " + path.getFileName());
 
-        try{
+        try {
             boolean fileExist = Files.exists(Paths.get("C:\\test.txt"));
             System.out.println(fileExist);
         } catch (Exception e) {
@@ -1415,7 +1420,7 @@ public class lessons_skillfactory_1 {
         }
     }
 
-    public static void libr_34(){
+    public static void libr_34() {
         User usr = new User("German", "Baklagin", "+79004551650", "cszc6791");
 //        usr.toJson(usr);
 //        usr.toString();
@@ -1464,7 +1469,7 @@ public class lessons_skillfactory_1 {
 
     public static int countIpAddresses(JsonArray quaryRes) {
         int count = 0;
-        if(quaryRes != null) {
+        if (quaryRes != null) {
             for (JsonElement element : quaryRes) {
                 JsonObject jsonObject = element.getAsJsonObject();
                 if (jsonObject.has("ipadress")) {
@@ -1475,9 +1480,96 @@ public class lessons_skillfactory_1 {
         return count;
     }
 
-    public static void passToDatabases(){
+    public static void passToDatabases() {
         User usr = new User("German", "Baklagin", "+79004551650", "cszc6791");
 
 //        DatabasePostgresql.insertUserToDatabase(usr.name, usr.surname, usr.password, usr.phoneNumber);
     }
+
+    private static Dao boxdao;
+
+    public static void libr_37() {
+        boxdao = new BoxDao();
+        boxdao.save(boxdao);
+    }
+
+
+    /*
+     *
+     * Работа с Базой данных jdbc Postgresql
+     *
+     * */
+
+
+    private static final String URL = "jdbc:postgresql://172.30.30.19:5431/fastapi?user=postgres&password=password123";
+    private static Connection connection;
+
+    public static void DatabasePostgresqlConnection() throws SQLException {
+        List<String> list = new ArrayList<>();
+//        connection = DriverManager.getConnection(URL);
+        try {
+            connection = DriverManager.getConnection(URL);
+            Statement statement = connection.createStatement();
+            System.out.println("Соедение с БД успешно");
+            System.out.println("Соедение успешно закрыто");
+            String query = "SELECT * from userdb";
+            PreparedStatement st = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                list.add(resultSet.getString("username"));
+//                int id = Integer.parseInt(resultSet.getString("id"));
+                String name = resultSet.getString("username");
+                System.out.println("ID: " + ", Name: " + name);
+            }
+            System.out.println(list);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            connection.close();
+
+        }
+
+        Set<String> set = new HashSet<>(list);
+        System.out.println(set);
+
+        Map<Integer, String> map = new HashMap<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            map.put(i, list.get(i));
+        }
+        System.out.println(map);
+        System.out.println(map.size());
+    }
+
+    public static void DatabasePostgresqlConnection_2() throws SQLException {
+        List<String> list = new ArrayList<>();
+//        connection = DriverManager.getConnection(URL);
+        try {
+            connection = DriverManager.getConnection(URL);
+            Statement statement = connection.createStatement();
+            System.out.println("Соедение с БД успешно");
+            System.out.println("Соедение успешно закрыто");
+            String query = "SELECT * from userdb where username=?";
+            // Подготавливаем запрос с параметром
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, "German");  // Устанавливаем значение параметра (например, 'German')
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String data = resultSet.getString("username");  // Допустим, в таблице есть поле "name"
+                list.add(data);  // Добавляем значение в список
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            connection.close();
+
+        }
+        System.out.println(list);
+    }
+
+    public static void libr_39() throws IOException, SQLException {
+        SimpleHttpServer.server();
+    }
 }
+

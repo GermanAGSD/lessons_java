@@ -15,3 +15,115 @@ CREATE TABLE developers (
 1. select * from public.userdb;
 2. INSERT INTO testtable (title, description) VALUES ('test1', 'test2');
 3. SELECT password FROM userdb WHERE username = 'German' AND surname = 'Baklagin';"
+
+
+Изменения уже существующих строк
+ALTER TABLE developers
+ADD CONSTRAINT developers_pkey PRIMARY KEY (ID);
+
+Удаление
+ALTER TABLE developers DROP PRIMARY KEY ;
+
+
+CREATE TABLE ORDERS (
+  ID          SERIAL     PRIMARY KEY,  -- Используем SERIAL для автоинкремента
+  DATE        TIMESTAMP,              -- Используем TIMESTAMP вместо DATETIME
+  CUSTOMER_ID INT REFERENCES CUSTOMERS(ID),  -- Внешний ключ, ссылается на поле ID в таблице CUSTOMERS
+  AMOUNT      DOUBLE PRECISION
+);
+
+CREATE TABLE employees (
+  ID          SERIAL     PRIMARY KEY,  -- Используем SERIAL для автоинкремента
+  NAME        VARCHAR(80) NOT NULL,    -- Обязательное поле для имени
+  SURNAME     VARCHAR(80) NOT NULL,    -- Обязательное поле для фамилии
+  PATRONYMIC  VARCHAR(80),             -- Опциональное поле для отчества
+  CITY        VARCHAR(40),             -- Опциональное поле для города
+  ADDRESS     VARCHAR(150),            -- Опциональное поле для адреса
+  NUMBER      VARCHAR(13),             -- Опциональное поле для номера телефона
+  CAR_ID      INT NOT NULL             -- Обязательное поле для идентификатора машины
+);
+
+
+SELECT employees.name, employees.surname, cars.model
+FROM employees
+JOIN cars ON employees.car_id = cars.car_id;
+
+
+mysql> ALTER TABLE phone_num ADD FOREIGN KEY(USER_ID) REFERENCES client(ID);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+Заполним все таблицы тестовыми данными.
+
+insert client(FIO) VALUES
+('Ivanov Ivan Ivanovich'),
+('Petrov Petr Petrovich'),
+('Testerov Tester Testerovich'),
+('Olgerd');
+
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+mysql> insert phone_num(NUMBER,USER_ID) VALUES ('89008001010','1'),('89008002020','1'),('89008003030','1');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert phone_num(NUMBER,USER_ID) VALUES ('89118111111','2'),('8118111235','2');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert phone_num(NUMBER,USER_ID) VALUES ('+790CALLME95','3');
+Query OK, 1 row affected (0.01 sec)
+
+- Max price
+SELECT
+  name
+FROM
+  products
+WHERE
+  price = (SELECT MAX(price) FROM products);
+
+- Join
+  select
+    *
+  from
+    orders
+    join clients on orders.client_id = clients.id;
+
+- Join
+select
+  *
+from
+  orders cross
+  join clients;
+
+- Join
+select
+  *
+from
+  clients
+  left outer join orders on orders.client_id = clients.id;
+
+select
+  sum(pos.amount),
+  prod.name
+from
+  positions as pos
+  join orders as o on pos.order_id = o.id
+  join products as prod on prod.id = pos.product_id
+where
+  o.client_id = 5
+group by
+  prod.id;
+
+select
+  products.name
+from
+  orders
+  join positions on orders.id = positions.order_id
+  join products on positions.product_id = products.id
+where
+  orders.date = (
+    select
+      max(date)
+    from
+      orders
+  );

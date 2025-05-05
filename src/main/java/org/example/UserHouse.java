@@ -1,8 +1,6 @@
 package org.example;
 
 import com.google.gson.JsonArray;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,7 +14,7 @@ import static org.example.UserKeys.checkPassword;
 
 public class UserHouse extends UserKeys {
     // Создание логера
-    private static final Logger logger = LogManager.getLogger(UserHouse.class);
+//    private static final Logger logger = LogManager.getLogger(UserHouse.class);
     private static final String hashpassword = "0f27dda9ae120790a018399a2ec345b06844cbe59a0dc5ba145fe41020ddbd9a";
     private String password;
 
@@ -55,10 +53,11 @@ public class UserHouse extends UserKeys {
 
         String storedPassword = query();
         if(checkPassword(password, storedPassword)) {
-            logger.info("Password House successful");
+//            logger.info("Password House successful");
             access = true;
+            System.out.println("The door is open");
         }else{
-            logger.info("Password House failed");
+//            logger.info("Password House failed");
         }
 
     }

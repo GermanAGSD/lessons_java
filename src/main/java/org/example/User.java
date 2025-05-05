@@ -1,7 +1,5 @@
 package org.example;
 import com.google.gson.Gson;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
@@ -16,11 +14,14 @@ public class User extends UserKeys {
     public String password;
 
     User() {}
-    private static final Logger logger = LogManager.getLogger(User.class);
+
+    public String getPassword() {
+        return password;
+    }
 
     private static String checkNullOrEmpty(String value){
         if(value == null && value.isEmpty()){
-            logger.error("Value is Empty or Null");
+//            logger.error("Value is Empty or Null");
             return null;
         }
         return value;
@@ -35,6 +36,12 @@ public class User extends UserKeys {
         this.password = generateSHA256Hash(password);
         passTOFile(generateSHA256Hash(password));
         storage = new HashMap<>();
+    }
+
+    public User(String name, String password ){
+        this.id = UUID.randomUUID().toString();
+        this.name = upperTo(name);
+        this.password = generateSHA256Hash(password);
     }
 
     public void addUser(User usr){
@@ -53,7 +60,7 @@ public class User extends UserKeys {
     public String checkNumber(String phoneNumber){
         checkNullOrEmpty(phoneNumber);
         if(phoneNumber.length() < 6){
-            logger.error("Phone not valid < 6 symbol");
+//            logger.error("Phone not valid < 6 symbol");
             return null;
         }
         return phoneNumber;
@@ -86,5 +93,8 @@ public class User extends UserKeys {
         System.out.println(gson.toJson(storage));
     }
 
+    public String getName() {
+        return name;
+    }
 }
 
