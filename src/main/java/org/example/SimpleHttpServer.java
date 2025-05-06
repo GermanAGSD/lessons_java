@@ -34,30 +34,46 @@ public class SimpleHttpServer {
                     // Извлекаем параметр 'username' из URL запроса
                     String query = exchange.getRequestURI().getQuery();
                     String username = null;
+                    String surname = null;
 
-                    if (query != null && query.contains("username=")) {
-                        username = query.split("username=")[1];
+                    // Извлекаем параметры из query
+                    if (query != null) {
+                        for (String param : query.split("&")) {
+                            String[] pair = param.split("=");
+                            if (pair.length == 2) {
+                                if (pair[0].equals("username")) {
+                                    username = pair[1];
+                                } else if (pair[0].equals("surname")) {
+                                    surname = pair[1];
+                                }
+                            }
+                        }
                     }
+//                    If 1 parametr
+//                    if (query != null && query.contains("username=")) {
+//                        username = query.split("username=")[1];
+//                    }
 
                     // Создаем JsonArray для хранения пользователей
                     JsonArray usersArray = new JsonArray();
 
                     try (Connection connection = DriverManager.getConnection(URL)) {
                         // Используем подготовленный запрос с параметром
-                        String sql = "SELECT username, password, surname, phone FROM userdb WHERE username = ?"; // Пример запроса с параметром
+                        String sql = "SELECT username, password, surname, phone FROM userdb WHERE username = ? AND surname = ?"; // Пример запроса с параметром
                         try (PreparedStatement statement = connection.prepareStatement(sql)) {
                             statement.setString(1, username); // Устанавливаем значение параметра
+                            statement.setString(2, surname); // Устанавливаем значение параметра
                             try (ResultSet resultSet = statement.executeQuery()) {
                                 while (resultSet.next()) {
                                     String dbUsername = resultSet.getString("username");
                                     String password = resultSet.getString("password");
-                                    String surname = resultSet.getString("surname");
+                                    String surname2 = resultSet.getString("surname");
                                     String phone = resultSet.getString("phone");
 
                                     JsonObject userJson = new JsonObject();
                                     userJson.addProperty("username", username);
                                     userJson.addProperty("password", password);
-                                    userJson.addProperty("surname", surname);
+                                    userJson.addProperty("surname", surname2);
                                     userJson.addProperty("phone", phone);
                                     usersArray.add(userJson);
                                 }
