@@ -12,11 +12,16 @@ public class User extends UserKeys {
     public String surname;
     public String phoneNumber;
     public String password;
+    private Userho userho;
 
     User() {}
 
     public String getPassword() {
         return password;
+    }
+
+    public Userho getType() {
+        return userho;
     }
 
     private static String checkNullOrEmpty(String value){
@@ -27,7 +32,7 @@ public class User extends UserKeys {
         return value;
     }
 
-    public User(String name, String surname, String phoneNumber, String password ){
+    public User(String name, String surname, String phoneNumber, String password, Userho userho){
 
         this.id = UUID.randomUUID().toString();
         this.name = upperTo(name);
@@ -36,6 +41,7 @@ public class User extends UserKeys {
         this.password = generateSHA256Hash(password);
         passTOFile(generateSHA256Hash(password));
         storage = new HashMap<>();
+        this.userho = userho;
     }
 
     public User(String name, String password ){

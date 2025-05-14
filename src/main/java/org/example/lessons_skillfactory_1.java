@@ -31,6 +31,7 @@ public class lessons_skillfactory_1 {
 
     public static void skillFactroy() {
         int[] les = new int[]{1, 2, 3, 4, 75};
+        int[] arr = new int[]{12, 3, 1, 2};
         MaxValue(les);
         MaxTwo(les);
     }
@@ -1421,7 +1422,7 @@ public class lessons_skillfactory_1 {
     }
 
     public static void libr_34() {
-        User usr = new User("German", "Baklagin", "+79004551650", "cszc6791");
+        User usr = new User("German", "Baklagin", "+79004551650", "cszc6791", Userho.User);
 //        usr.toJson(usr);
 //        usr.toString();
         UserHouse usrHouse = new UserHouse();
@@ -1481,7 +1482,7 @@ public class lessons_skillfactory_1 {
     }
 
     public static void passToDatabases() {
-        User usr = new User("German", "Baklagin", "+79004551650", "cszc6791");
+        User usr = new User("German", "Baklagin", "+79004551650", "cszc6791", Userho.Admin);
 
 //        DatabasePostgresql.insertUserToDatabase(usr.name, usr.surname, usr.password, usr.phoneNumber);
     }
@@ -1571,5 +1572,33 @@ public class lessons_skillfactory_1 {
     public static void libr_39() throws IOException, SQLException {
         SimpleHttpServer.server();
     }
+
+    public static int fact(int n) {
+        int res;
+        if (n == 1) return 1;
+        res = fact(n - 1) * n;
+        return res;
+    }
+
+    public static void vaTest(int... v) {
+        System.out.println(v.length);
+        for (int x : v)
+            System.out.println(x);
+        System.out.println();
+    }
+    public static void appleEnum(){
+        Apple ap;
+        Apple[] allApples = Apple.values();
+        for(Apple apple : allApples){
+            System.out.println(apple);
+        }
+        try {
+            System.out.println(Apple.valueOf("RedDel"));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 }
 

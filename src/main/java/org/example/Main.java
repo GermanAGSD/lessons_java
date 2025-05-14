@@ -105,16 +105,29 @@ public class Main {
 //        client.run();
 //        DatabasePostgresqlConnection();
 //        DatabasePostgresqlConnection_2();
-            libr_39();
+//            libr_39();
 //            libr_35();
 //        SpringDatabase();
-
-
-
-
-
+//        int res = fact(4);
+//        System.out.println(res);
+//        vaTest(1,2,3);
+//        displayMessage("Works");
+//        appleEnum();
+//        LdapExample.ldapConnect();
+//        boolean auth = LdapAuth.authenticateAndGenerateToken("german","XXLPR6");
+//        System.out.println(auth);
+        String token = LdapAuth.authenticateAndGenerateToken("german", "XXLPR6");
+        System.out.println(token);
+        TokenUtils.isValid(token);
 
     }
+    public static void displayMessage(String message) {
+        // Получаем тот же экземпляр Singleton и выводим сообщение
+        Singlton singleton = Singlton.getInstance();
+        singleton.updateMessage(message);
+        System.out.println(message);
+    }
+
 
     public static void quaery() {
 
@@ -250,7 +263,7 @@ public class Main {
 
         String phone = "+79210111954";
         System.out.println(phone.length());
-        User user = new User("german", "backlagin", "+79004551650", "cszc6791");
+        User user = new User("german", "backlagin", "+79004551650", "cszc6791", Userho.User);
 //        user.showUser();
 
 
