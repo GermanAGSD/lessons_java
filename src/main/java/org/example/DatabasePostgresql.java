@@ -294,5 +294,30 @@ public class DatabasePostgresql {
         }
     }
 
+    public static String getMessageJson(String userId){
+        JsonArray jsonArray = new JsonArray();
+        Gson gson = new Gson();
+        String query = "SELECT userid, question, answer, created_at FROM userqa WHERE userid = ? ORDER BY created_at DESC";
+        try(Connection conn = DriverManager.getConnection(URL)){
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                JsonObject message = new JsonObject();
+                message.addProperty("userid", rs.getString("userid"));
+                message.addProperty("question", rs.getString("question"));
+                message.addProperty("answer", rs.getString("answer"));
+                message.addProperty("created_at", rs.getString("created_at"));
+                jsonArray.add(message);
+            }
+        } catch (SQLException e) {
+            JsonObject error = new JsonObject();
+            error.addProperty("error", "Database error: " + e.getMessage());
+            return gson.toJson(error);
+        }
+        System.out.println(gson.toJson(jsonArray));
+        return gson.toJson(jsonArray);
+    }
+
 }
 
