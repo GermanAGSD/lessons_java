@@ -122,6 +122,8 @@ public class Main {
         DatabasePostgresql.getMessageJson("123");
 
 
+
+
     }
     public static void displayMessage(String message) {
         // Получаем тот же экземпляр Singleton и выводим сообщение
