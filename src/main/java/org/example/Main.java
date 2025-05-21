@@ -119,8 +119,10 @@ public class Main {
 //        String token = LdapAuth.authenticateAndGenerateToken("german", "XXLPR6");
 //        System.out.println(token);
 //        TokenUtils.isValid(token);
-        DatabasePostgresql.getMessageJson("123");
-
+//        DatabasePostgresql.getMessageJson("123");
+        jsonArr();
+        jsonArr2();
+        jsonArr3();
 
 
 

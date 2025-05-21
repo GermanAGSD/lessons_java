@@ -1586,19 +1586,71 @@ public class lessons_skillfactory_1 {
             System.out.println(x);
         System.out.println();
     }
-    public static void appleEnum(){
+
+    public static void appleEnum() {
         Apple ap;
         Apple[] allApples = Apple.values();
-        for(Apple apple : allApples){
+        for (Apple apple : allApples) {
             System.out.println(apple);
         }
         try {
             System.out.println(Apple.valueOf("RedDel"));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
+    public static void jsonArr() {
+        JsonArray arr = new JsonArray();
 
+        String name = "German";
+        String name2 = "Baklagin";
+
+        JsonObject obj = new JsonObject();
+        obj.addProperty("username", "German");
+        obj.addProperty("username", "German");
+        arr.add(obj);
+
+        JsonObject obj2 = new JsonObject();
+        obj2.addProperty("username", "Baklagin");
+        arr.add(obj2);
+
+        Gson gson = new Gson();
+        String jsonResp = gson.toJson(arr);
+        System.out.println(jsonResp);
+
+    }
+
+    public static void jsonArr2() {
+        JsonArray arr = new JsonArray();
+        JsonArray usernames = new JsonArray();
+
+        usernames.add("German");
+        usernames.add("Baklagin");
+
+        JsonObject obj = new JsonObject();
+        obj.add("username", usernames);
+        arr.add(obj);
+
+        Gson gson = new Gson();
+        String jsonResp = gson.toJson(arr);
+        System.out.println(jsonResp);
+    }
+
+    public static void jsonArr3() {
+        JsonObject obj = new JsonObject();
+
+        JsonArray questions = new JsonArray();
+        questions.add("Я сейчас на конференции");
+        questions.add("Я сейчас на конференции");
+
+        obj.add("question", questions);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(obj);
+
+        System.out.println(json);
+
+    }
 }
 
