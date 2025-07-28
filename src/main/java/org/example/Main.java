@@ -22,7 +22,7 @@ import static org.example.lessons_skillfactory_1.*;
 */
 public class Main {
 //    Определение класса - метод main
-    public static void main(String[] args) throws IOException, InterruptedException, SQLException {
+    public static void main(String[] args) throws Exception {
 
         String name = "German"; // Строковыее значения
         byte peremennay_1 = 127; // : -128
@@ -120,12 +120,17 @@ public class Main {
 //        System.out.println(token);
 //        TokenUtils.isValid(token);
 //        DatabasePostgresql.getMessageJson("123");
-        jsonArr();
-        jsonArr2();
-        jsonArr3();
-
-
-
+//        jsonArr();
+//        jsonArr2();
+//        jsonArr3();
+//        int[] arr21 = {1,2,3,4,5,6};
+//        MaxValue(arr21);
+//        MaxTwo(arr21);
+//        module_3_3();
+//        SSE.server();
+//        streamFunc();
+//        selfedu_7();
+        books_32();
 
     }
     public static void displayMessage(String message) {

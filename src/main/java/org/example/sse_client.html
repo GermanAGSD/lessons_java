@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Client</title>
+</head>
+<body>
+<h1>SSE Client</h1>
+<div id="messages">
+    <p>Ожидаем данные...</p>
+</div>
+
+<script>
+    // Создаём соединение с сервером SSE
+    const eventSource = new EventSource('http://localhost:8080/sse'); // Указываем адрес сервера
+
+    // Обработчик получения данных
+    eventSource.onmessage = function(event) {
+        // Когда сервер отправляет сообщение, оно будет доступно в event.data
+        const messageElement = document.createElement('p');
+        messageElement.textContent = "Получено сообщение: " + event.data;
+        document.getElementById('messages').appendChild(messageElement);
+    };
+
+    // Обработчик ошибок
+    eventSource.onerror = function(event) {
+        console.error("Ошибка SSE:", event);
+        eventSource.close(); // Закрытие соединения в случае ошибки
+    };
+</script>
+</body>
+</html>

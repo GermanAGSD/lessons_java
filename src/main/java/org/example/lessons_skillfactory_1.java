@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import io.reactivex.rxjava3.core.Observable;
 import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import io.reactivex.rxjava3.core.*;
 
 import javax.swing.*;
 import java.io.*;
@@ -21,6 +24,9 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.*;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -44,8 +50,10 @@ public class lessons_skillfactory_1 {
                 max = arr[i];
             }
         }
+        System.out.println(arr.length);
         System.out.println(max);
     }
+
 
     public static void MaxTwo(int[] arr) {
         int one = Integer.MIN_VALUE;
@@ -65,6 +73,7 @@ public class lessons_skillfactory_1 {
 
 
     public static void Stack() {
+
         CustomStack stack = new CustomStack(5);
         stack.push("Java");
         stack.push("Spring");
@@ -1651,6 +1660,629 @@ public class lessons_skillfactory_1 {
 
         System.out.println(json);
 
+    }
+
+    public static void streamFunc() {
+        // Вызов метода st() из класса StreamAPI
+        StreamAPI.st();
+
+        // Можно добавить задержку, чтобы увидеть асинхронную обработку
+        try {
+            Thread.sleep(6000);  // Ждём немного, чтобы асинхронные задачи успели выполниться
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Завершение работы программы.");
+
+    }
+
+    public static void selfedu_7() {
+        double pi, r, a;
+        r = 10.8;
+        pi = Math.PI;
+        a = pi * r * r;
+        System.out.println(a);
+
+    }
+
+    public static void books_1() {
+        double num = 5;
+        int num2 = (int) num;
+        double a = 3.0, b = 4.0;
+        double c = Math.sqrt(a * a + b * b);
+        System.out.println(c);
+        System.out.println(num2);
+    }
+
+    public static void books_2() {
+        int[] months_days = new int[]{1, 2, 3, 4, 5};
+        for (int val : months_days) {
+            System.out.println(val);
+        }
+        int[][] twoD = new int[4][5];
+
+        B subOb = new B(1, 2);
+        subOb.show();
+
+        Rectangle r = new Rectangle(9, 5);
+
+        System.out.println("S = " + r.getArea());
+    }
+
+    public static void books_3() {
+        Thread t = Thread.currentThread();
+        System.out.println("Текущий поток");
+        t.setName("My thread");
+        System.out.println("После изменения" + t);
+        try {
+            for (int i = 5; i > 0; i--) {
+                System.out.println(i);
+                Thread.sleep(1000);
+
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void books_4() {
+        MyThread mythread = new MyThread();
+        mythread.t.start();
+
+        try {
+            for (int i = 5; i > 0; i--) {
+                System.out.println("Главный поток");
+                Thread.sleep(1000);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void books_5() {
+        MyThread2 mythread2 = new MyThread2();
+        mythread2.start();
+
+        try {
+            for (int i = 5; i > 0; i--) {
+                System.out.println("Главный поток");
+                Thread.sleep(1000);
+            }
+            System.out.println("Главный поток");
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void books_6() {
+        Thread th = new Thread(() -> {
+//            Код потока
+            System.out.println("Выполнятся логика исполь лямбда выражения");
+        });
+
+        th.start();
+    }
+
+    public static void books_7() {
+        ExecutorService ex = Executors.newFixedThreadPool(5);
+//newFixedThreadPool
+        ex.submit(() -> {
+//            код потока
+            System.out.println("Выполнятся поток");
+        });
+        ex.shutdown();
+    }
+
+    public static void books_8() {
+        Apple ap;
+        ap = Apple.RedDel;
+        System.out.println(ap);
+
+        Apple[] allapple = Apple.values();
+        for (Apple apple : allapple) {
+            System.out.println(apple);
+        }
+        ap = Apple.valueOf("RedDel");
+        System.out.println(ap);
+
+
+    }
+
+    public static void books_9() {
+        Apple ap, ap2, ap3;
+        for (Apple a : Apple.values()) {
+            System.out.println(a);
+        }
+
+        ap = Apple.RedDel;
+        ap2 = Apple.GoldenDelm;
+        ap3 = Apple.RedDel;
+
+        if (ap.compareTo(ap2) < 0)
+            System.out.println(ap + "находиться перед " + ap2);
+    }
+
+    public static void books_10() {
+        Integer iob = Integer.valueOf(100);
+        int i = iob.intValue();
+        System.out.println(i + " " + iob);
+    }
+
+    public static void books_11() throws IOException {
+        char c;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+        System.out.println("Vvodite simvoly dly vschoda q");
+        do {
+            c = (char) br.read();
+            System.out.println(c);
+        } while (c != 'q');
+    }
+
+    public static void books_12() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+        String str;
+        System.out.println("Вводите строки текста");
+        System.out.println("Для завершения введеите stop");
+        do {
+            str = br.readLine();
+            System.out.println(str);
+        } while (!str.equals("stop"));
+
+    }
+
+    public static void books_13(String[] args) {
+        int i;
+        FileInputStream fin;
+        if (args.length != 1) {
+            System.out.println(" use show file name file");
+            return;
+        }
+
+        try {
+            fin = new FileInputStream(args[0]);
+        } catch (FileNotFoundException e) {
+            System.out.println("Не удалось открыть файл");
+            return;
+        }
+        try {
+            do {
+                i = fin.read();
+                if (i != 1)
+                    System.out.println((char) i);
+            } while (i != -1);
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                fin.close();
+            } catch (IOException e) {
+                System.out.println("Ошибка при закрытии файла");
+            }
+        }
+    }
+
+    public static void books_14() throws Exception {
+        Gen<Integer> iob = new Gen<Integer>(88);
+        iob.showType();
+        int v = iob.getOb();
+        System.out.println(v);
+
+        Gen<String> iobstr = new Gen<String>("Heloo");
+        iobstr.showType();
+        String ve = iobstr.getOb();
+        System.out.println(ve);
+
+        ApacheCamel.apachecamel_message();
+    }
+
+    public static void books_15() {
+        MyNumber myNum;
+        myNum = () -> 123.45;
+        System.out.println(myNum.getValue());
+        NumericTest numTest = n -> (n % 2) == 0;
+        if (numTest.test(10)) {
+            System.out.println("10 Четное число");
+        }
+        NumericTest negativeSravneni = (n) -> n >= 0;
+        if (negativeSravneni.test(1)) {
+            System.out.println("Число 1 является неотрицательным");
+        }
+
+        NumerickTest2 isFactor = (n, d) -> (n % d) == 0;
+        if (isFactor.test(10, 2)) {
+            System.out.println("Является множетелем");
+        }
+
+        NumerickFunc factorial = (n) -> {
+            int result = 1;
+            for (int i = 1; i <= n; i++) {
+                result = i * result;
+            }
+
+            return result;
+        };
+        System.out.println("Факториал 3 равен: " + factorial.func(3));
+    }
+
+    public static void books_16() {
+        int eventCode = 6010;
+
+        int priorityLevel = switch (eventCode) {
+            case 1000, 115:
+                yield 1;
+            case 2000, 6010:
+                yield 2;
+            default:
+                yield 0;
+        };
+
+        System.out.println(priorityLevel);
+
+        int priorityLevel2 = switch (eventCode) {
+            case 1000, 115 -> 1;
+            case 2000, 6010 -> 2;
+            default -> 0;
+        };
+        System.out.println(priorityLevel2);
+
+        boolean stopNow;
+        int priorityLevel3 = switch (eventCode) {
+            case 1000, 1110 -> {
+                stopNow = false;
+                System.out.println("Тревога");
+                yield 1;
+            }
+            case 6010, 10001 -> {
+                stopNow = true;
+                System.out.println("Опасность");
+                yield 2;
+            }
+            default -> {
+                stopNow = false;
+                yield 0;
+            }
+        };
+
+
+    }
+
+    public static void books_17() {
+        char[] chars = {'a', 'b', 'c'};
+        String s = new String(chars);
+        System.out.println(s.length());
+        System.out.println(s);
+        String s2 = "abc";
+        char ch;
+        ch = "abc".charAt(1);
+        System.out.println(ch);
+    }
+
+    public static void books_18() {
+        Double d1 = Double.valueOf(3.14159);
+        Double d2 = Double.valueOf("3.14159E-5");
+        System.out.println(d1 + " " + d2);
+        Runtime r = Runtime.getRuntime();
+        Process p = null;
+
+        try {
+            p = r.exec("Notepad");
+            p.waitFor();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
+    }
+
+    public static void books_19() {
+        try {
+            ProcessBuilder proc = new ProcessBuilder("notepad.exe", "testfile");
+            proc.start();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void books_20() {
+        long start, end;
+        System.out.println("Хронометраж цикла for от 0 до 100 000 000");
+        start = System.currentTimeMillis();
+        for (long i = 0; i < 100_000_000L; i++) {
+
+        }
+        end = System.currentTimeMillis();
+        System.out.println("Затраченное время: " + (end - start) + "mc");
+    }
+
+    public static void books_21() {
+        byte[] a = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74};
+        byte[] b = {77, 77, 77, 77, 77, 77, 77, 77, 77, 77};
+        System.out.println("a= " + new String(a));
+        System.out.println("b= " + new String(b));
+        System.arraycopy(a, 0, b, 0, a.length);
+        System.out.println("a= " + new String(a));
+        System.out.println("b= " + new String(b));
+
+    }
+
+    public static void books_22() {
+        ArrayList<String> a1 = new ArrayList<String>();
+        a1.add("C");
+        a1.add("A");
+        a1.add("E");
+        a1.add("B");
+        a1.add("D");
+        System.out.println("Size: " + a1.size());
+
+        ArrayList<Integer> a2 = new ArrayList<Integer>();
+        a2.add(1);
+        a2.add(2);
+        a2.add(3);
+        a2.add(4);
+
+        Integer[] ia = new Integer[a2.size()];
+        ia = a2.toArray(ia);
+        int sum = 0;
+        for (int i : ia) {
+            sum += i;
+        }
+        System.out.println(sum);
+
+
+        LinkedList<String> ll = new LinkedList<String>();
+        ll.add("C");
+        ll.add("A");
+        ll.add("E");
+        ll.add("B");
+        ll.add("D");
+        ll.addLast("R");
+        ll.addFirst("G");
+        System.out.println(ll);
+        System.out.println(Collections.max(ll));
+        ArrayList<String> arr = new ArrayList<String>();
+        arr.add("C");
+        arr.add("A");
+        arr.add("E");
+        arr.add("B");
+        System.out.println("Исходное состояние arr " + arr);
+        ListIterator<String> litr = arr.listIterator();
+
+        while (litr.hasNext()) {
+            String element = litr.next();
+            System.out.print(element + " ");
+        }
+
+        ListIterator<String> litr2 = arr.listIterator();
+        while (litr2.hasNext()) {
+            String element = litr2.next();
+            litr2.set(element + "+");
+        }
+        System.out.println("Модифицированное состояние " + arr);
+
+        while (litr.hasPrevious()) {
+            String element = litr.previous();
+            System.out.print(element + " ");
+        }
+
+        ArrayList<Integer> arr2 = new ArrayList<Integer>();
+        arr2.add(1);
+        arr2.add(2);
+        arr2.add(3);
+        arr2.add(4);
+        System.out.println("Содержимое arr2");
+
+        for (int v : arr2) {
+            System.out.print(v + " ");
+        }
+
+        System.out.println();
+
+        int summ = 0;
+        for (int v : arr2) {
+            summ += v;
+        }
+        System.out.println("Summ " + summ);
+    }
+
+    public static void books_23() {
+        ArrayList<Double> arr = new ArrayList<Double>();
+        arr.add(1.0);
+        arr.add(2.0);
+        arr.add(3.0);
+        arr.add(4.0);
+        arr.add(5.0);
+        System.out.println("Содержимое arr");
+        Spliterator<Double> splitr = arr.spliterator();
+        while (splitr.tryAdvance((n) -> System.out.println(n))) ;
+
+        splitr = arr.spliterator();
+
+    }
+
+    public static void books_24() {
+
+        HashMap<String, Double> hm = new HashMap<String, Double>();
+        hm.put("John Doe", 3434.34);
+        hm.put("Tom Smith", 123.22);
+        hm.put("Jane Beaker", 1378.00);
+        hm.put("Tod Hall", 99.22);
+
+        Set<Map.Entry<String, Double>> set = hm.entrySet();
+        for (Map.Entry<String, Double> me : set) {
+            System.out.println(me.getKey() + ": ");
+            System.out.println(me.getValue());
+        }
+        System.out.println();
+        double balance = hm.get("John Doe");
+        hm.put("John Doe", balance + 1000);
+
+        System.out.println("Новый баланс клиента John Doe: " + hm.get("John Doe"));
+    }
+
+    public static void books_25() {
+        TreeMap<String, Double> tm = new TreeMap<String, Double>();
+        tm.put("John Doe", 3434.34);
+        tm.put("Tom Smith", 123.22);
+        tm.put("Jane Beaker", 1378.00);
+        tm.put("Tod Hall", 99.22);
+
+        Set<Map.Entry<String, Double>> set = tm.entrySet();
+        for (Map.Entry<String, Double> me : set) {
+            System.out.println(me.getKey() + ": ");
+            System.out.println(me.getValue());
+        }
+
+        System.out.println();
+
+        double balance = tm.get("John Doe");
+        tm.put("John Doe", balance + 1000);
+        System.out.println("Новый баланс клиента John Doe: " + tm.get("John Doe"));
+    }
+
+    // Сортировка в обратном порядке с использованием компатора
+    public static void books_26() {
+        TreeSet<String> ts = new TreeSet<String>(new MyComparator());
+        ts.add("C");
+        ts.add("A");
+        ts.add("E");
+        ts.add("B");
+        ts.add("D");
+        for (String element : ts) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+
+    }
+
+    public static void books_27() {
+        LinkedList<Integer> ll = new LinkedList<Integer>();
+        ll.add(-8);
+        ll.add(20);
+        ll.add(-20);
+        ll.add(8);
+        Comparator<Integer> r = Collections.reverseOrder();
+        Collections.sort(ll, r);
+        System.out.println("Список отсортирован в обратном порядке: ");
+        for (int i : ll) {
+            System.out.println(i + " ");
+        }
+        System.out.println();
+        Collections.shuffle(ll);
+        System.out.print("Список перетасован: ");
+        for (int i : ll) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        System.out.println(Collections.max(ll));
+        System.out.println(Collections.min(ll));
+    }
+
+    public static void books_28() {
+        int[] array = new int[10];
+        for (int i = 0; i < 10; i++) {
+            array[i] = -3 * i;
+        }
+        System.out.println("Исходное содержимое: ");
+        for (int i: array){
+            System.out.print(i + " ");
+        }
+        Arrays.sort(array);
+        System.out.println();
+        for (int i: array){
+            System.out.print(i + " ");
+        }
+        Arrays.fill(array, 2,6,-1);
+        System.out.println("Содержимое после fill: ");
+        for (int i: array){
+            System.out.print(i + " ");
+        }
+        Arrays.sort(array);
+        System.out.println();
+        for (int i: array){
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        int index = Arrays.binarySearch(array, -9);
+        System.out.println(index);
+
+    }
+
+    public static void display(int[] arr){
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    public static void books_29() {
+        Vector<Integer> vector = new Vector<>(3,2);
+        System.out.println("Емкость до: " + vector.capacity());
+        System.out.println("Размер до: " + vector.size());
+
+        vector.addElement(1);
+        vector.addElement(2);
+        vector.addElement(3);
+        vector.addElement(4);
+
+        System.out.println();
+        System.out.println("Емкость после: " + vector.capacity());
+        System.out.println("Размер после: " + vector.size());
+
+
+    }
+
+    public static void books_30() {
+        Observable<String> stream = Observable.just("one", "two", "three");
+        stream
+//                .map(String::toUpperCase)
+//                .filter(s -> s.length() > 2)
+                .subscribe(System.out::println);
+
+    }
+
+    public static void books_31() {
+        Observable<Long> timer = Observable.interval(0, 1, TimeUnit.SECONDS);
+
+        timer
+                .map(tick -> readTemperature())              // каждый тик — новая температура
+                .filter(temp -> temp > 25)                   // фильтруем "горячие" значения
+                .subscribe(
+                        temp -> System.out.println("🔥 Высокая температура: " + temp + "°C"),
+                        Throwable::printStackTrace
+                );
+
+        // Чтобы не завершался main-поток (Rx работает асинхронно)
+        try {
+            Thread.sleep(20000); // 20 секунд работы
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Эмуляция "чтения" с датчика
+    public static double readTemperature() {
+        double value = 20 + Math.random() * 10; // от 20 до 30
+        System.out.println("📡 Считано: " + value + "°C");
+        return value;
+    }
+
+    /**
+     * Работы стрим потоков данных реактивность
+     */
+
+    public static void books_32() {
+        EventBus.messagesString.filter(msg -> msg.contains("temp")).subscribe(msg -> {
+            System.out.println(msg);
+        });
+        EventBus.messagesString.onNext("Hello temp");
+
+
+        EventBus.messagesNumber.subscribe(msg -> {
+            System.out.println(msg);
+        });
+        EventBus.messagesNumber.onNext(55);
     }
 }
 
